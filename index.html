@@ -86,25 +86,6 @@
             transition: color 0.3s;
         }
 
-        /* Ambient Cursor Glow — floats above all sections */
-        #ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 55vw;
-            height: 55vw;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 999;
-            /* Above everything */
-            opacity: 0.08;
-            /* Very subtle so it doesn't wash out text */
-            mix-blend-mode: screen;
-            filter: blur(90px);
-            will-change: left, top;
-        }
 
         .container {
             width: 100%;
@@ -422,14 +403,16 @@
 
         .quote-text {
             font-family: var(--font-head);
-            font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+            font-size: clamp(1rem, 2.2vw, 1.5rem);
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--text-main);
-            letter-spacing: 0.02em;
-            text-transform: none;
+            letter-spacing: 0.05em;
+            /* Matches Syncopate section-label style */
+            text-transform: uppercase;
             margin-bottom: 1.5rem;
-            font-style: italic;
+            font-style: normal;
+            /* No italic */
         }
 
         .quote-author {
@@ -675,22 +658,10 @@
         }
 
         .footer-map {
-            width: 100%;
             height: 300px;
             overflow: hidden;
-            filter: grayscale(100%) contrast(1.1) brightness(0.6);
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 4vw;
-            /* Match .container padding */
-            box-sizing: border-box;
-        }
-
-        .footer-map iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
+            filter: grayscale(100%) contrast(1.1) brightness(0.55);
+            margin-bottom: 0;
         }
 
         .footer-map iframe {
@@ -808,10 +779,7 @@
 
 <body>
 
-    <!-- AMBIENT GREEN CURSOR GLOW -->
-    <div id="ambient-glow"></div>
-
-    <!-- NAVBAR: Logo | 4 Links | Lang Toggle -->
+    <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <div class="nav-logo">
@@ -992,6 +960,8 @@
                         <li><i class="ph-bold ph-check"></i> <span data-hu="3 mix + 2 master revízió"
                                 data-en="3 mix + 2 master revisions">3 mix + 2 master revízió</span></li>
                     </ul>
+                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                        class="btn" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
 
                 <!-- Card 2 -->
@@ -1009,6 +979,8 @@
                         <li><i class="ph-bold ph-check"></i> <span data-hu="Mix & Prémium Mastering"
                                 data-en="Mix & Premium Mastering">Mix & Prémium Mastering</span></li>
                     </ul>
+                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                        class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
 
                 <!-- Card 3 -->
@@ -1025,6 +997,8 @@
                         <li><i class="ph-bold ph-check"></i> <span data-hu="Dolby Atmos / 360° igény esetén"
                                 data-en="Dolby Atmos / 360° if needed">Dolby Atmos / 360° igény esetén</span></li>
                     </ul>
+                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                        class="btn" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
             </div>
         </div>
@@ -1113,11 +1087,12 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="container">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
             <div class="footer-map">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86280.99958379058!2d18.966953335028485!3d47.48123010534951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741c334d1d4cfc9%3A0x400c4290c1e1160!2sBudapest!5e0!3m2!1shu!2shu!4v1707920158866!5m2!1shu!2shu"
-                    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    width="100%" height="300" style="border:0;display:block;" allowfullscreen loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1193,21 +1168,6 @@
             entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); observer.unobserve(e.target); } });
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Ambient cursor glow
-        const glow = document.getElementById('ambient-glow');
-        let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-        let gx = cx, gy = cy;
-
-        window.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; }, { passive: true });
-
-        (function tick() {
-            gx += (cx - gx) * 0.055;
-            gy += (cy - gy) * 0.055;
-            glow.style.left = gx + 'px';
-            glow.style.top = gy + 'px';
-            requestAnimationFrame(tick);
-        })();
     </script>
 </body>
 
