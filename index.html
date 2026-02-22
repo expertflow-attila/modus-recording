@@ -86,7 +86,7 @@
             transition: color 0.3s;
         }
 
-        /* Ambient Cursor Glow */
+        /* Ambient Cursor Glow — floats above all sections */
         #ambient-glow {
             position: fixed;
             top: 0;
@@ -97,7 +97,8 @@
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
             transform: translate(-50%, -50%);
             pointer-events: none;
-            z-index: 0;
+            z-index: 999;
+            /* Above everything */
             opacity: 0.18;
             mix-blend-mode: screen;
             filter: blur(90px);
@@ -127,7 +128,8 @@
             background: transparent;
             color: var(--text-main);
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: all 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+            /* Slower, more deliberate */
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -141,7 +143,8 @@
             width: 100%;
             height: 0%;
             background: var(--text-main);
-            transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: height 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+            /* Slower sweep */
             z-index: -1;
         }
 
@@ -352,8 +355,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.22;
-            /* Heavily darkened so text is clear */
+            opacity: 0.50;
+            /* Visible but darkened enough for text readability */
         }
 
         /* Dark overlay for extra legibility */
@@ -365,9 +368,9 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(to bottom,
-                    rgba(10, 10, 10, 0.4) 0%,
-                    rgba(10, 10, 10, 0.15) 50%,
-                    rgba(10, 10, 10, 0.65) 100%);
+                    rgba(10, 10, 10, 0.55) 0%,
+                    rgba(10, 10, 10, 0.3) 40%,
+                    rgba(10, 10, 10, 0.7) 100%);
         }
 
         .hero-content {
@@ -672,9 +675,21 @@
 
         .footer-map {
             width: 100%;
-            height: 320px;
+            height: 300px;
             overflow: hidden;
             filter: grayscale(100%) contrast(1.1) brightness(0.6);
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 4vw;
+            /* Match .container padding */
+            box-sizing: border-box;
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
         }
 
         .footer-map iframe {
@@ -862,8 +877,9 @@
     <div class="quote-section">
         <div class="container">
             <div class="quote-block reveal">
-                <p class="quote-text">&ldquo;A zene nem vész el a gombok között — ha tudod, mit keresel.&rdquo;</p>
-                <span class="quote-author">— Vitányi Dávid, Modus Recording</span>
+                <p class="quote-text">&ldquo;A felszerelés csak eszköz. Az ízlés, a bizalom és az odafigyelés az, ami
+                    egy dalt naggyá tesz.&rdquo;</p>
+                <span class="quote-author">Modus Recording</span>
             </div>
         </div>
     </div>
@@ -872,7 +888,8 @@
     <section class="section alt-bg" id="services">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label" data-hu="Fókuszterületek" data-en="What We Do">Fókuszterületek</span>
+                <span class="section-label" data-hu="Mikért válassz minket" data-en="What We Do">Mikért válassz
+                    minket</span>
                 <h2 class="section-title" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</h2>
             </div>
 
@@ -925,8 +942,6 @@
                         data-en="Our clients span rock, punk, metal and film productions. Our impact on the local music scene is significant.">
                         Ügyfeleink között rock, punk, metal és filmes produkciókat egyaránt vállalunk. Hatásunk a hazai
                         zenei színtéren kiemelkedő.</p>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book a Session">Időpontfoglalás</a>
                 </div>
 
                 <div class="staff-grid">
@@ -956,7 +971,7 @@
     <section class="section alt-bg" id="rates">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label" data-hu="Transzparencia" data-en="Pricing">Transzparencia</span>
+                <span class="section-label" data-hu="Árak és csomagok" data-en="Packages">Árak és csomagok</span>
                 <h2 class="section-title" data-hu="Árak & Csomagok" data-en="Rates & Packages">Árak & Csomagok</h2>
             </div>
 
@@ -976,8 +991,6 @@
                         <li><i class="ph-bold ph-check"></i> <span data-hu="3 mix + 2 master revízió"
                                 data-en="3 mix + 2 master revisions">3 mix + 2 master revízió</span></li>
                     </ul>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
 
                 <!-- Card 2 -->
@@ -995,8 +1008,6 @@
                         <li><i class="ph-bold ph-check"></i> <span data-hu="Mix & Prémium Mastering"
                                 data-en="Mix & Premium Mastering">Mix & Prémium Mastering</span></li>
                     </ul>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
 
                 <!-- Card 3 -->
@@ -1013,8 +1024,6 @@
                         <li><i class="ph-bold ph-check"></i> <span data-hu="Dolby Atmos / 360° igény esetén"
                                 data-en="Dolby Atmos / 360° if needed">Dolby Atmos / 360° igény esetén</span></li>
                     </ul>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
             </div>
         </div>
@@ -1057,8 +1066,8 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</span>
-                <h2 class="section-title" data-hu="Vedd fel a kapcsolatot." data-en="Get in touch.">Vedd fel a
-                    kapcsolatot.</h2>
+                <h2 class="section-title" data-hu="Vegyél fel velünk a kapcsolatot!" data-en="Get in touch with us!">
+                    Vegyél fel velünk a kapcsolatot!</h2>
             </div>
 
             <div class="contact-grid reveal">
@@ -1073,14 +1082,15 @@
                 </div>
 
                 <div class="contact-boxes">
-                    <a href="mailto:david@modusrecording.hu?subject=Stúdió érdeklődés" class="c-box">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=david@modusrecording.hu&su=Stúdió%20érdeklődés"
+                        target="_blank" class="c-box">
                         <i class="ph-light ph-envelope-simple"></i>
                         <div class="c-box-content">
                             <h4>Email</h4>
                             <span>david@modusrecording.hu</span>
                         </div>
                     </a>
-                    <a href="https://m.me/modus.recording" target="_blank" class="c-box">
+                    <a href="https://m.facebook.com/modus.recording" target="_blank" class="c-box">
                         <i class="ph-light ph-messenger-logo"></i>
                         <div class="c-box-content">
                             <h4>Messenger</h4>
@@ -1102,10 +1112,12 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-map">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86280.99958379058!2d18.966953335028485!3d47.48123010534951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741c334d1d4cfc9%3A0x400c4290c1e1160!2sBudapest!5e0!3m2!1shu!2shu!4v1707920158866!5m2!1shu!2shu"
-                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="container">
+            <div class="footer-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86280.99958379058!2d18.966953335028485!3d47.48123010534951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741c334d1d4cfc9%3A0x400c4290c1e1160!2sBudapest!5e0!3m2!1shu!2shu!4v1707920158866!5m2!1shu!2shu"
+                    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
         <div class="footer-bottom">
             <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/LOGO.png" alt="Modus Logo">
