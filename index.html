@@ -12,20 +12,23 @@
     <meta property="og:description"
         content="Független zenekarok és filmesek hangmérnöki partnere Budapesten. Felvétel, keverés, mastering, mobil stúdió.">
     <meta property="og:type" content="website">
-    <!-- TODO: Cseréld ki a valódi tartalomra -->
-    <meta property="og:image" content="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg">
+    <meta property="og:image"
+        content="https://modusrecording.hu/vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg">
     <meta property="og:url" content="https://modusrecording.hu">
 
     <!-- Favicon -->
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C8A050'>M</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23D4AF37'>M</text></svg>">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -33,7 +36,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Modus Recording",
-      "image": "vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg",
+      "image": "https://modusrecording.hu/vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg",
       "description": "Független zenekarok és filmesek hangmérnöki partnere Budapesten. Felvétel, keverés, mastering, mobil stúdió.",
       "address": {
         "@type": "PostalAddress",
@@ -47,17 +50,19 @@
 
     <style>
         :root {
-            --bg-main: #0A0A0A;
-            --bg-grad-end: #1A1A1A;
-            --bg-sec: #0D1A0D;
-            --bg-tert: #111B11;
-            --accent: #C8A050;
-            --accent-hover: #A0522D;
-            --text-main: #E8E4DE;
-            --text-sec: #8A8578;
+            --bg-dark: #030403;
+            --bg-gradient: linear-gradient(145deg, #050805 0%, #0a0a0a 100%);
+            --accent: #D4AF37;
+            --accent-hover: #b8962b;
+            --accent-glow: rgba(212, 175, 55, 0.4);
+            --text-main: #F4F2ED;
+            --text-sec: #9E9B95;
             --font-head: 'DM Serif Display', serif;
-            --font-body: 'Plus Jakarta Sans', sans-serif;
-            --border-radius: 4px;
+            --font-body: 'Outfit', sans-serif;
+            --border-radius: 6px;
+            --glass-bg: rgba(20, 24, 20, 0.65);
+            --glass-border: 1px solid rgba(212, 175, 55, 0.15);
+            --nav-height: 80px;
         }
 
         * {
@@ -68,19 +73,20 @@
 
         html {
             scroll-behavior: smooth;
+            background-color: var(--bg-dark);
+            scroll-padding-top: var(--nav-height);
         }
 
         body {
             font-family: var(--font-body);
-            background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-grad-end) 100%);
+            background: var(--bg-gradient);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
             position: relative;
-            background-attachment: fixed;
         }
 
-        /* Film Grain Overlay */
+        /* Subtle Film Grain */
         .grain-overlay {
             position: fixed;
             top: 0;
@@ -89,7 +95,7 @@
             height: 100%;
             pointer-events: none;
             z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
         h1,
@@ -98,540 +104,590 @@
         h4 {
             font-family: var(--font-head);
             font-weight: 400;
-            line-height: 1.2;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
             margin-bottom: 1rem;
         }
 
         p {
             margin-bottom: 1.5rem;
             color: var(--text-sec);
+            font-size: 1.1rem;
         }
 
         a {
             color: var(--accent);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         a:hover {
             color: var(--accent-hover);
+            text-shadow: 0 0 8px var(--accent-glow);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 5%;
         }
 
         .section {
-            padding: 100px 0;
+            padding: 120px 0;
+            position: relative;
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             background: transparent;
             color: var(--accent);
             border: 1px solid var(--accent);
-            padding: 0.8rem 2rem;
+            padding: 1rem 2.5rem;
             font-family: var(--font-body);
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             border-radius: var(--border-radius);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-decoration: none;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 0 rgba(200, 160, 80, 0);
+        }
+
+        /* Micro-animation: Ripple/Sweep effect on hover */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(212, 175, 55, 0.1);
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            transition: transform 0.6s ease-out;
+            z-index: -1;
+        }
+
+        .btn:hover::after {
+            transform: translate(-50%, -50%) scale(1);
         }
 
         .btn:hover {
-            background: var(--accent);
-            color: var(--bg-main);
-            box-shadow: 0 0 15px rgba(200, 160, 80, 0.4);
-            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow), inset 0 0 10px rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
         }
 
         .btn-solid {
             background: var(--accent);
-            color: var(--bg-main);
+            color: var(--bg-dark);
+            border-color: var(--accent);
+        }
+
+        .btn-solid::after {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .btn-solid:hover {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
-            box-shadow: 0 0 15px rgba(160, 82, 45, 0.4);
-            color: var(--text-main);
+            color: var(--bg-dark);
+            box-shadow: 0 8px 25px var(--accent-glow);
         }
 
-        .desaturated {
-            filter: saturate(0.85) contrast(1.05);
-            transition: filter 0.5s ease;
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: var(--glass-border);
+            border-radius: var(--border-radius);
         }
 
-        .desaturated:hover {
-            filter: saturate(1) contrast(1);
-        }
-
-        /* Lang toggle */
-        .lang-toggle {
-            position: absolute;
-            top: 2rem;
-            right: 5%;
-            z-index: 100;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .lang-toggle a.active {
-            color: var(--text-main);
+        .section-label {
+            display: block;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
             font-weight: 600;
         }
 
-        /* Section 1: Hero */
+        /* --- SZEKCIÓ VIZUÁLIS ELEMEK --- */
+
+        /* Sticky Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(3, 4, 3, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            height: 70px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .nav-logo {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo i {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-nav-book {
+            font-size: 0.8rem;
+            padding: 0.6rem 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            font-size: 2rem;
+            color: var(--text-main);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Hero */
         .hero {
-            height: 100vh;
+            height: calc(100vh - var(--nav-height));
+            min-height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
-            background-image: radial-gradient(circle at center, rgba(10, 10, 10, 0.4) 0%, var(--bg-main) 100%), url('vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg');
+            background-image: radial-gradient(circle at center, rgba(3, 4, 3, 0.3) 0%, rgba(3, 4, 3, 0.95) 100%), url('vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg');
             background-size: cover;
-            background-position: center;
-            padding-bottom: 100px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 10, 0.7);
-            z-index: 0;
+            background-position: center 30%;
+            background-attachment: scroll;
+            position: relative;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero svg.logo {
-            width: 140px;
-            height: auto;
-            margin-bottom: 2rem;
-            fill: var(--accent);
-            filter: drop-shadow(0 0 15px rgba(200, 160, 80, 0.3));
+            z-index: 2;
+            max-width: 900px;
+            width: 100%;
+            padding: 0 5%;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
         .hero .subtag {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-sec);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 2.5rem;
+            letter-spacing: 4px;
+            margin-bottom: 3.5rem;
+            font-weight: 300;
         }
 
-        /* Audio Widget (Used in Hero & Portfolio) */
-        .audio-widget {
-            background: rgba(17, 27, 17, 0.8);
-            border: 1px solid rgba(200, 160, 80, 0.2);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            margin-top: 3rem;
-            width: 100%;
-            max-width: 600px;
-            backdrop-filter: blur(10px);
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--accent);
+            font-family: var(--font-body);
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .portraits {
             position: relative;
-            z-index: 1;
-            margin-left: auto;
-            margin-right: auto;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .portrait-img {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.5s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            /* Removed heavy grayscale */
+        }
+
+        .portrait-img:nth-child(2) {
+            margin-top: 4rem;
+        }
+
+        .portrait-img:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid rgba(212, 175, 55, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(30, 35, 30, 0.9);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.05);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .highlight {
+            margin-top: auto;
+            display: inline-block;
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Audio Player - Modernized (Moved to Portfolio) */
+        .audio-widget {
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .audio-widget:hover {
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.4);
         }
 
         .audio-widget-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .audio-widget-track-info {
             text-align: left;
         }
 
-        .audio-widget-track-info h4 {
-            margin-bottom: 0;
-            font-family: var(--font-body);
-            font-weight: 600;
-            color: var(--text-main);
-            font-size: 1rem;
-        }
-
         .audio-widget-track-info span {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .audio-widget-track-info h4 {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1.5rem;
+            color: white;
+            letter-spacing: 0.5px;
         }
 
         .play-btn {
-            background: none;
+            background: var(--accent);
+            color: var(--bg-dark);
             border: none;
-            color: var(--accent);
-            cursor: pointer;
-            width: 48px;
-            height: 48px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
-            border: 1px solid var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 0 25px var(--accent-glow);
         }
 
         .play-btn:hover {
-            background: var(--accent);
-            color: var(--bg-main);
+            transform: scale(1.1);
+            box-shadow: 0 0 35px var(--accent-glow);
+            background: #e8c85c;
         }
 
-        .play-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-            margin-left: 3px;
-            /* visual center for play icon */
+        .play-btn i {
+            font-size: 32px;
         }
 
-        .play-btn.playing svg {
-            margin-left: 0;
-        }
-
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 1.5rem;
-        }
-
-        .slider-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--text-sec);
-            min-width: 70px;
-        }
-
-        .slider-label.raw {
-            text-align: right;
-        }
-
-        .slider-label.mixed {
-            text-align: left;
+        .play-btn.loading {
+            background: transparent;
+            border: 2px solid var(--accent);
             color: var(--accent);
+            cursor: wait;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 var(--accent-glow);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
+        .slider-wrapper {
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .slider-labels .raw-lbl {
+            color: var(--text-sec);
+            transition: color 0.3s;
+        }
+
+        .slider-labels .mix-lbl {
+            color: var(--accent);
+            transition: color 0.3s;
         }
 
         .audio-slider {
             -webkit-appearance: none;
+            appearance: none;
             width: 100%;
             height: 6px;
-            background: linear-gradient(to right, #444 0%, #444 50%, rgba(200, 160, 80, 0.4) 50%, rgba(200, 160, 80, 0.4) 100%);
+            background: #333;
             outline: none;
             border-radius: 3px;
-        }
-
-        /* Focus styles for accessibility */
-        .audio-slider:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
+            position: relative;
+            z-index: 5;
         }
 
         .audio-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
-            background: var(--accent);
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(200, 160, 80, 0.5);
-            transition: transform 0.1s;
+            background: var(--bg-dark);
+            border: 2px solid var(--accent);
+            cursor: ew-resize;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), background 0.2s;
         }
 
         .audio-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-        }
-
-        .audio-slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+            transform: scale(1.25);
             background: var(--accent);
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 0 10px rgba(200, 160, 80, 0.5);
         }
 
-        .demo-badge {
+        .loading-text {
             position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--accent-hover);
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Section 2: Bemutatkozás */
-        .about-section {
-            background-color: var(--bg-sec);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .portraits {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .portrait-img {
-            width: 100%;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            background: #222;
-            /* Placeholder if no image */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            position: relative;
-        }
-
-        /* Section 3: Szolgáltatások */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: var(--bg-tert);
-            padding: 2.5rem 2rem;
-            border-radius: var(--border-radius);
-            border-top: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            border-top-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .service-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card .highlight {
-            display: inline-block;
-            margin-top: 1.5rem;
-            font-size: 0.85rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.9rem;
             color: var(--accent);
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+            display: none;
         }
 
-        /* Section 4: Portfolio */
-        .portfolio-section {
-            background: var(--bg-main);
-        }
-
-        .portfolio-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .portfolio-list .audio-widget {
-            margin-top: 0;
-            max-width: 100%;
-        }
-
-        .embed-grid {
+        /* Portfolio */
+        .portfolio-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
+        /* Add hover micro-interactions to embeds */
         .embed-container {
-            background: #111;
             border-radius: var(--border-radius);
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 315px;
-            color: #555;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        /* Section 5: Folyamat */
-        .process-section {
-            background: var(--bg-sec);
+        .embed-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.1);
         }
 
-        .process-timeline {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 4rem;
-            position: relative;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            top: 30px;
-            left: 0;
+        .embed-container iframe {
+            display: block;
             width: 100%;
-            height: 2px;
-            background: #333;
-            z-index: 0;
+            border: none;
         }
 
-        .process-step {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            flex: 1;
-            padding: 0 10px;
+        /* Sub-sections / Alternate Backgrounds */
+        .bg-alternate {
+            background: #060806;
+            /* slightly different dark tone */
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
         }
 
-        .step-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--bg-tert);
-            border: 2px solid #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem auto;
-            transition: all 0.3s ease;
-        }
-
-        .process-step:hover .step-icon {
-            border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(200, 160, 80, 0.3);
-        }
-
-        .process-step:hover h4 {
-            color: var(--accent);
-        }
-
-        .step-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--text-sec);
-            transition: fill 0.3s ease;
-        }
-
-        .process-step:hover .step-icon svg {
-            fill: var(--accent);
-        }
-
-        .process-step h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-family: var(--font-body);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .process-step p {
-            font-size: 0.85rem;
-            color: var(--text-sec);
-        }
-
-        /* Section 6: Árak */
-        .pricing-section {
-            background: var(--bg-main);
-        }
-
+        /* Pricing (Removed Legnépszerűbb bias) */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 4rem;
+            align-items: stretch;
         }
 
         .pricing-card {
-            background: var(--bg-tert);
-            border-radius: var(--border-radius);
-            padding: 3rem 2rem;
-            text-align: center;
+            padding: 3.5rem 2.5rem;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(200, 160, 80, 0.1);
+            height: 100%;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
-        .pricing-card.popular {
-            border-color: var(--accent);
-            transform: scale(1.05);
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            z-index: 2;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--bg-main);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.05);
         }
 
         .price {
-            font-size: 1.8rem;
             font-family: var(--font-head);
+            font-size: 2.5rem;
             color: var(--text-main);
-            margin-bottom: 2rem;
+            margin: 1rem 0 2rem;
+            line-height: 1;
+        }
+
+        .price span {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--text-sec);
         }
 
         .pricing-features {
@@ -641,141 +697,25 @@
         }
 
         .pricing-features li {
-            font-size: 0.95rem;
-            color: var(--text-sec);
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-ideal {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-
-        /* Section 7: Testimonials */
-        .testimonials-section {
-            background: var(--bg-sec);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: var(--bg-main);
-            padding: 2.5rem;
-            border-radius: var(--border-radius);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '\201C';
-            font-family: var(--font-head);
-            font-size: 5rem;
-            color: rgba(200, 160, 80, 0.1);
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            line-height: 1;
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            font-style: italic;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-
-        .author-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #333;
-            object-fit: cover;
-        }
-
-        .author-info h5 {
-            font-size: 1rem;
-            font-family: var(--font-body);
-            color: var(--text-main);
-        }
-
-        .author-info span {
-            font-size: 0.8rem;
+            gap: 12px;
+            margin-bottom: 1rem;
             color: var(--text-sec);
+            font-size: 1rem;
         }
 
-        /* Section 8: Lead Magnet */
-        .lead-magnet-section {
-            background: linear-gradient(to right, var(--bg-tert), var(--bg-sec));
-            border-top: 1px solid rgba(200, 160, 80, 0.2);
-            border-bottom: 1px solid rgba(200, 160, 80, 0.2);
-            text-align: center;
+        .pricing-features li i {
+            color: var(--accent);
+            font-size: 1.2rem;
         }
 
-        .lead-magnet-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .optin-form {
-            display: flex;
-            gap: 10px;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .optin-input {
-            flex-grow: 1;
-            max-width: 350px;
-            padding: 0.8rem 1.5rem;
-            border: 1px solid #444;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border-radius: var(--border-radius);
-            font-family: var(--font-body);
-        }
-
-        .optin-input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .spam-note {
-            display: block;
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 1rem;
-        }
-
-        /* Section 9: Contact */
-        .contact-section {
-            background: var(--bg-main);
-            text-align: center;
-        }
-
+        /* Contact */
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
+            gap: 4.5rem;
+            margin-top: 4rem;
             flex-wrap: wrap;
         }
 
@@ -783,138 +723,98 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
+            gap: 15px;
+            cursor: pointer;
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
-            background: var(--bg-tert);
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--accent);
+            font-size: 2.2rem;
             color: var(--accent);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .contact-link:hover .contact-icon {
             background: var(--accent);
-            color: var(--bg-main);
+            color: var(--bg-dark);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-link span {
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover span {
+            color: var(--accent) !important;
         }
 
         /* Footer */
         footer {
-            background: #050505;
-            padding: 2rem 0;
+            padding: 3rem 0;
             text-align: center;
-            border-top: 1px solid #1a1a1a;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: #020302;
         }
 
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .process-timeline {
+        /* Navigation Responsive */
+        @media (max-width: 990px) {
+            .nav-links {
+                display: none;
                 flex-direction: column;
-                gap: 2rem;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                width: 100%;
+                background: rgba(3, 4, 3, 0.98);
+                padding: 2rem 5%;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             }
 
-            .process-timeline::before {
-                top: 0;
-                left: 30px;
-                width: 2px;
-                height: 100%;
-            }
-
-            .process-step {
+            .nav-links.show {
                 display: flex;
-                text-align: left;
-                align-items: flex-start;
-                gap: 1rem;
             }
 
-            .step-icon {
-                margin: 0;
-                min-width: 60px;
+            .mobile-toggle {
+                display: block;
             }
 
+            .about-grid,
             .pricing-grid {
                 grid-template-columns: 1fr;
-                max-width: 400px;
-                margin-left: auto;
-                margin-right: auto;
             }
 
-            .pricing-card.popular {
-                transform: none;
-            }
-
-            .embed-grid {
-                grid-template-columns: 1fr;
+            .portraits {
+                justify-content: center;
             }
         }
 
         @media (max-width: 600px) {
             .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .slider-container {
-                flex-wrap: wrap;
-                justify-content: space-between;
-                gap: 5px;
-            }
-
-            .audio-slider {
-                width: 100%;
-                order: 3;
-                margin-top: 10px;
-            }
-
-            .slider-label.raw {
-                order: 1;
-                text-align: left;
-            }
-
-            .slider-label.mixed {
-                order: 2;
-            }
-
-            .optin-form {
-                flex-direction: column;
+                font-size: 2.8rem;
             }
 
             .btn {
                 width: 100%;
             }
 
+            .slider-labels {
+                font-size: 0.75rem;
+            }
+
+            .audio-widget {
+                padding: 1.5rem 1rem;
+            }
+
             .contact-links {
-                gap: 2rem;
-                flex-direction: column;
+                gap: 2.5rem;
             }
         }
     </style>
@@ -924,431 +824,259 @@
 
     <div class="grain-overlay"></div>
 
-    <div class="lang-toggle">
-        <a href="#" class="active">HU</a> | <a href="#">EN</a>
-    </div>
+    <!-- STICKY NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <i class="ph ph-waveform"></i> Modus
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" class="nav-link">Sztori</a></li>
+                <li><a href="#services" class="nav-link">Szolgáltatások</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfólió</a></li>
+                <li><a href="#pricing" class="nav-link">Csomagok</a></li>
+                <li><a href="#contact" class="nav-link">Kapcsolat</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="https://cal.com/vitanyi-david" target="_blank" class="btn btn-solid btn-nav-book">
+                    <i class="ph-bold ph-calendar-plus"></i> Időpontfoglalás
+                </a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
     <!-- SZEKCIÓ 1: HERO -->
-    <section class="hero" id="hero">
+    <header class="hero" id="hero">
         <div class="hero-content fade-in">
-            <!-- [LOGO_SVG] -->
-            <svg class="logo" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-                <!-- Stilizált M erdő sziluettel -->
-                <path d="M10,70 L10,30 L25,10 L35,25 L50,5 L65,25 L75,10 L90,30 L90,70" fill="none"
-                    stroke="currentColor" stroke-width="8" stroke-linejoin="round" />
-                <path d="M25,10 L10,30 L10,70 L25,70 L25,10 Z" fill="currentColor" />
-                <path d="M75,10 L90,30 L90,70 L75,70 L75,10 Z" fill="currentColor" />
-                <!-- Középső hegyek/fák -->
-                <path d="M25,70 L40,40 L50,55 L60,40 L75,70 Z" fill="currentColor" />
-                <circle cx="50" cy="20" r="5" fill="currentColor" />
-            </svg>
-
             <h1>Halld meg a különbséget.</h1>
             <p class="subtag">Felvétel &middot; Keverés &middot; Mastering &middot; Budapest</p>
 
-            <a href="#portfolio" class="btn btn-solid">Hallgasd meg a munkáinkat ↓</a>
-
-            <!-- Interaktív Audio Widget -->
-            <div class="audio-widget">
-                <div class="demo-badge" id="hero-badge" style="display:none;">DEMO MÓD</div>
-                <div class="audio-widget-header">
-                    <div class="audio-widget-track-info">
-                        <span>Demo Szám</span>
-                        <h4>Nyers felvétel vs. Kész master</h4>
-                    </div>
-                    <button class="play-btn" id="hero-play" aria-label="Lejátszás">
-                        <!-- Play Icon -->
-                        <svg class="icon-play" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
-                        <!-- Pause Icon (hidden by default via JS) -->
-                        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;">
-                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="slider-container">
-                    <span class="slider-label raw">NYERS</span>
-                    <!-- Slider controls mix ratio: 0 is Raw, 100 is Mixed -->
-                    <!-- TODO: Cseréld ki a valódi tartalomra -->
-                    <input type="range" min="0" max="100" value="50" class="audio-slider" id="hero-slider"
-                        data-raw="[RAW_AUDIO_URL]" data-mixed="[MIXED_AUDIO_URL]" aria-label="Keverési arány">
-                    <span class="slider-label mixed">KEVERVE</span>
-                </div>
+            <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                <a href="#portfolio" class="btn btn-solid"><i class="ph-bold ph-play-circle"></i> Hallgasd meg a
+                    munkáinkat</a>
+                <a href="https://cal.com/vitanyi-david" target="_blank" class="btn glass-panel"><i
+                        class="ph-bold ph-calendar"></i> Időpontfoglalás</a>
             </div>
         </div>
-    </section>
+    </header>
 
     <!-- SZEKCIÓ 2: BEMUTATKOZÁS -->
-    <section class="section about-section" id="about">
+    <section class="section bg-alternate" id="about">
         <div class="container fade-in">
             <div class="about-grid">
-                <div>
-                    <h2>Nem csak gombokat tekerünk.</h2>
-                    <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 2rem;">Meghalljuk, mi az, ami
-                        megérint a zenédben — és azt hegyezzük ki.</h3>
-                    <p>A Modus Recording nem egy szokásos stúdió. Dávid az old school, a koszos grunge, a punk energia
-                        embere. Tomszi a precíz, modern metal és elektronikus hangzások mestere. Együtt olyanok vagyunk,
-                        mint a gin és a Janki — kiegészítjük egymást.</p>
-                    <p>Nem a felszerelés a lényeg (bár Neumann mikrofonjaink azért vannak). A lényeg az, hogy oda
-                        figyelünk. Rád.</p>
+                <div class="about-text">
+                    <span class="section-label">Rólunk</span>
+                    <h2>A zene nem vész el a gombok között.</h2>
+                    <h3>Mi azt hegyezzük ki, ami tényleg számít: a dalt és az energiát.</h3>
+                    <p>A Modus Recording nem egy klasszikus, lélektelen stúdióipari futószalag. Abban hiszünk, hogy
+                        minden dalnak saját karaktere van, amit nem szabad template-ekkel elnyomni.</p>
+                    <p>Dávid az old school, a koszos grunge és a punk energia embere, aki az érzelmet keresi a
+                        felvételekben. Tomszi a precíz, modern metal és elektronikus hangzások mestere, aki a maximális
+                        harapósságot és élességet hozza. Együtt a nyers erőt és a kőkemény prezuíziót egyesítjük.</p>
+                    <p>A technika csak eszköz (bár az eszközparkunk komoly). A legfontosabb, hogy az üzeneted és a zenéd
+                        átjöjjön a hangfalakon.</p>
                 </div>
                 <div class="portraits">
-                    <!-- TODO: Cseréld ki a valódi tartalomra -->
+                    <!-- Images are no longer heavily filtered/blurred -->
                     <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/da%CC%81vid.jpg"
-                        alt="Vitányi Dávid" class="portrait-img desaturated" loading="lazy">
-                    <!-- TODO: Cseréld ki a valódi tartalomra -->
+                        alt="Vitányi Dávid" class="portrait-img" loading="lazy">
                     <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/mark-golovko-521806lr.jpg"
-                        alt="Tomszi" class="portrait-img desaturated" loading="lazy">
+                        alt="Tomszi" class="portrait-img" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SZEKCIÓ 3: SZOLGÁLTATÁSOK -->
-    <section class="section services-section" id="services">
+    <section class="section" id="services">
         <div class="container fade-in">
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <span
-                    style="color: var(--accent); text-transform:uppercase; letter-spacing: 2px; font-size: 0.8rem;">Mit
-                    csinálunk</span>
-                <h2>Szolgáltatások</h2>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">
+                <span class="section-label">Szolgáltatások</span>
+                <h2>Szakértelem minden fázisban.</h2>
             </div>
+
             <div class="services-grid">
-                <div class="service-card">
-                    <h3>🎙 Felvétel</h3>
+                <div class="service-card glass-panel">
+                    <i class="ph ph-microphone-stage service-icon"></i>
+                    <h3>Felvétel</h3>
                     <p>Kimegyünk hozzátok, vagy gyertek hozzánk. Mobil stúdiónkkal bárhol felveszünk — próbateremben,
-                        templomban, nappaliban. A felvétel minősége dönti el a végeredményt. Ezért itt kezdjük.</p>
+                        templomban, nappaliban. A felvétel minősége dönti el a végeredményt.</p>
                     <span class="highlight">Mobil stúdió — egyedülálló Budapesten</span>
                 </div>
-                <div class="service-card">
-                    <h3>🎛 Keverés & Mastering</h3>
-                    <p>Minden stílus: rock, punk, hip-hop, post-punk, metal, akusztikus. Nem template-ből dolgozunk —
-                        minden szám egyedi figyelmet kap. 3 mix revízió + 2 master revízió benne van az árban.</p>
-                    <span class="highlight">Személyre szabott hangzás, nem preset</span>
+
+                <div class="service-card glass-panel">
+                    <i class="ph ph-sliders service-icon"></i>
+                    <h3>Mix/Master</h3>
+                    <p>Rock, punk, hip-hop, metal, akusztikus. Nem template-ből dolgozunk — minden szám egyedi figyelmet
+                        kap. 3 mix revízió + 2 master revízió benne van az árban.</p>
+                    <span class="highlight">Személyre szabott hangzás</span>
                 </div>
-                <div class="service-card">
-                    <h3>🎬 Film & Reklám</h3>
-                    <p>Dialógus-összevágás, hangeffektek, sound design, teljes utómunka. Reklámfilmek, kisfilmek,
-                        YouTube-produkciók.</p>
-                    <span class="highlight">Referencia: Cápák Között (RTL), számlaz.hu, Reindeer Cinema</span>
+
+                <div class="service-card glass-panel">
+                    <i class="ph ph-film-slate service-icon"></i>
+                    <h3>Film hang</h3>
+                    <p>Dialógus-összevágás, hangeffektek, sound design, teljes utómunka reklámfilmekhez, kisfilmekhez és
+                        YouTube-produkciókhoz a legmagasabb broadcast standardekkel.</p>
+                    <span class="highlight">Olyan partnerekkel, mint az RTL</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SZEKCIÓ 4: PORTFOLIÓ -->
-    <section class="section portfolio-section" id="portfolio">
+    <!-- SZEKCIÓ 4: PORTFÓLIÓ (Single, clear audio player here) -->
+    <section class="section bg-alternate" id="portfolio">
         <div class="container fade-in">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <span
-                    style="color: var(--accent); text-transform:uppercase; letter-spacing: 2px; font-size: 0.8rem;">Referenciák</span>
-                <h2>Hallgasd meg</h2>
-                <p>Mozgasd a csúszkát a nyers és a kevert verzió összehasonlításához.</p>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                <span class="section-label">Portfólió</span>
+                <h2>A végeredmény magáért beszél.</h2>
+                <p>Nézz meg néhányat az eddigi munkáink közül. A slider segítségével meghallgathatod, hogyan lesz a
+                    nyers stúdiósávokból robbanékony, masszív keverés.</p>
             </div>
 
-            <div class="portfolio-list">
-                <!-- Portfolio Elem 1 -->
-                <div class="audio-widget">
-                    <div class="demo-badge portfolio-badge" style="display:none;">DEMO MÓD</div>
-                    <div class="audio-widget-header">
-                        <div class="audio-widget-track-info">
-                            <!-- TODO: Cseréld ki a valódi tartalomra -->
-                            <span>[ZENEKÁR_1] · Metal</span>
-                            <h4>[SZÁM_1_CÍM]</h4>
-                        </div>
-                        <button class="play-btn portfolio-play" aria-label="Lejátszás">
-                            <svg class="icon-play" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;">
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                            </svg>
-                        </button>
+            <!-- Interaktív Audio Widget (A kért prémium stílus és valódi file-ok) -->
+            <div class="audio-widget glass-panel">
+                <div class="loading-text">Hangfájlok töltése...</div>
+                <div class="audio-widget-header">
+                    <div class="audio-widget-track-info">
+                        <span>Példa Master</span>
+                        <h4>Nyers felvétel vs. Kész Mix</h4>
                     </div>
-                    <div class="slider-container">
-                        <span class="slider-label raw">NYERS</span>
-                        <!-- TODO: Cseréld ki a valódi tartalomra -->
-                        <input type="range" min="0" max="100" value="50" class="audio-slider portfolio-slider"
-                            data-raw="[RAW_AUDIO_URL_1]" data-mixed="[MIXED_AUDIO_URL_1]" aria-label="Keverési arány">
-                        <span class="slider-label mixed">KEVERVE</span>
-                    </div>
+                    <button class="play-btn" id="portfolio-play" aria-label="Lejátszás/Megállítás">
+                        <i class="ph-fill ph-play"></i>
+                    </button>
                 </div>
 
-                <!-- Portfolio Elem 2 -->
-                <div class="audio-widget">
-                    <div class="demo-badge portfolio-badge" style="display:none;">DEMO MÓD</div>
-                    <div class="audio-widget-header">
-                        <div class="audio-widget-track-info">
-                            <!-- TODO: Cseréld ki a valódi tartalomra -->
-                            <span>[ZENEKÁR_2] · Rock</span>
-                            <h4>[SZÁM_2_CÍM]</h4>
-                        </div>
-                        <button class="play-btn portfolio-play" aria-label="Lejátszás">
-                            <svg class="icon-play" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;">
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                            </svg>
-                        </button>
+                <div class="slider-wrapper">
+                    <div class="slider-labels">
+                        <span class="raw-lbl" id="lbl-raw">NYERS</span>
+                        <span class="mix-lbl" id="lbl-mix">KEVERVE</span>
                     </div>
-                    <div class="slider-container">
-                        <span class="slider-label raw">NYERS</span>
-                        <!-- TODO: Cseréld ki a valódi tartalomra -->
-                        <input type="range" min="0" max="100" value="50" class="audio-slider portfolio-slider"
-                            data-raw="[RAW_AUDIO_URL_2]" data-mixed="[MIXED_AUDIO_URL_2]" aria-label="Keverési arány">
-                        <span class="slider-label mixed">KEVERVE</span>
-                    </div>
+                    <!-- A valódi weboldalon, cseréld le a data-raw és data-mixed attribútumokat a zenekar MP3 fájljaira! -->
+                    <input type="range" min="0" max="100" value="50" class="audio-slider" id="portfolio-slider"
+                        data-raw="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+                        data-mixed="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+                        aria-label="Keverési arány">
                 </div>
             </div>
 
-            <!-- Embeds (YouTube) -->
-            <div class="embed-grid">
+            <!-- YouTube / Spotify Embeds Portfolio Grid -->
+            <div class="portfolio-grid" style="margin-top: 5rem;">
                 <div class="embed-container">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/H-eeDWnmgLo"
+                    <iframe width="100%" height="280" src="https://www.youtube.com/embed/H-eeDWnmgLo"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
                 </div>
                 <div class="embed-container">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/iC4SxvT8v4o"
+                    <iframe width="100%" height="280" src="https://www.youtube.com/embed/iC4SxvT8v4o"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
                 </div>
                 <div class="embed-container">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/FTeQoL50voU"
+                    <iframe width="100%" height="280" src="https://www.youtube.com/embed/FTeQoL50voU"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
+                </div>
+                <!-- Extra reference placeholders for symmetrical visual weight -->
+                <div class="embed-container glass-panel"
+                    style="display: flex; align-items: center; justify-content: center; height: 280px; flex-direction: column; gap: 15px; color: var(--text-sec); border: 2px dashed rgba(212,175,55,0.2);">
+                    <i class="ph-light ph-spotify-logo" style="font-size: 3rem; color: #1DB954;"></i>
+                    <p style="margin:0; font-size: 0.9rem;">Spotify dal beágyazás helye</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SZEKCIÓ 5: FOLYAMAT -->
-    <section class="section process-section" id="process">
+    <!-- SZEKCIÓ 5: ÁRAK (Eszközként mind a három kártya egyenrangú lett) -->
+    <section class="section" id="pricing">
         <div class="container fade-in">
             <div style="text-align: center;">
-                <span
-                    style="color: var(--accent); text-transform:uppercase; letter-spacing: 2px; font-size: 0.8rem;">Hogyan
-                    dolgozunk</span>
-                <h2>A közös munka lépései</h2>
-            </div>
-
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z" />
-                        </svg>
-                    </div>
-                    <h4>1. Ismerkedés</h4>
-                    <p>Összeülünk, megbeszéljük mit szeretnél és hová tart a produkció.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-                        </svg>
-                    </div>
-                    <h4>2. Demo / Próba</h4>
-                    <p>Meghallgatjuk az anyagokat, átbeszéljük az irányt, tanácsot adunk.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z" />
-                        </svg>
-                    </div>
-                    <h4>3. Felvétel</h4>
-                    <p>Stúdióban nálunk, vagy kimegyünk hozzátok a mobil stúdióval.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
-                        </svg>
-                    </div>
-                    <h4>4. Keverés</h4>
-                    <p>Kidolgozzuk a hangzást. 3 mix revízió biztosítja, hogy elégedett legyél.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6zm4 4h-2v-2h2v2zm0-4h-2V7h2v6z" />
-                        </svg>
-                    </div>
-                    <h4>5. Mastering</h4>
-                    <p>Végső fényesítés és hangeseti optimalizálás. 2 master revízió.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                        </svg>
-                    </div>
-                    <h4>6. Kész!</h4>
-                    <p>Letöltés, streamek, fizikai kiadás — a zene készen áll.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SZEKCIÓ 6: ÁRAK -->
-    <section class="section pricing-section" id="pricing">
-        <div class="container fade-in">
-            <div style="text-align: center;">
-                <span
-                    style="color: var(--accent); text-transform:uppercase; letter-spacing: 2px; font-size: 0.8rem;">Csomagok</span>
+                <span class="section-label">Csomagok</span>
                 <h2>Korrekt, átlátható árak</h2>
             </div>
 
             <div class="pricing-grid">
-                <div class="pricing-card">
+                <div class="pricing-card glass-panel">
                     <h3>Mix & Master</h3>
-                    <div class="price">~50-60k Ft <span
-                            style="font-size:1rem; color:var(--text-sec); font-family:var(--font-body)">/dal</span>
-                    </div>
+                    <div class="price">~50-60k <span>Ft/dal</span></div>
                     <ul class="pricing-features">
-                        <li>Saját otthoni/stúdió felvételedből</li>
-                        <li>Nyitott soksávos utómunka</li>
-                        <li>Vokál tune, időzítés javítás</li>
-                        <li>3 mix + 2 master revízió</li>
+                        <li><i class="ph-bold ph-check"></i> Saját otthoni/stúdió felvételedből</li>
+                        <li><i class="ph-bold ph-check"></i> Nyitott soksávos utómunka</li>
+                        <li><i class="ph-bold ph-check"></i> Vokál tune, időzítés javítás</li>
+                        <li><i class="ph-bold ph-check"></i> 3 mix + 2 master revízió</li>
                     </ul>
-                    <p class="pricing-ideal">Ideális: Ha van már kész, tiszta felvételed.</p>
-                    <a href="#contact" class="btn">Kérd az ajánlatot</a>
+                    <a href="#contact" class="btn">Árajánlat kérése</a>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Legnépszerűbb</div>
+                <div class="pricing-card glass-panel">
                     <h3>Teljes Produkció</h3>
-                    <div class="price">~120-150k Ft <span
-                            style="font-size:1rem; color:var(--text-sec); font-family:var(--font-body)">/dal</span>
-                    </div>
+                    <div class="price">~120-150k <span>Ft/dal</span></div>
                     <ul class="pricing-features">
-                        <li>Pre-production konzultáció</li>
-                        <li>Felvétel nálunk vagy nálatok</li>
-                        <li>Kreatív hangszerelés tippek</li>
-                        <li>Teljes keverés és mastering</li>
-                        <li>3 mix + 2 master revízió</li>
+                        <li><i class="ph-bold ph-check"></i> Pre-production konzultáció</li>
+                        <li><i class="ph-bold ph-check"></i> Felvétel nálunk vagy mobil stúdióval</li>
+                        <li><i class="ph-bold ph-check"></i> Kreatív hangszerelés tippek</li>
+                        <li><i class="ph-bold ph-check"></i> Teljes keverés és prémium mastering</li>
+                        <li><i class="ph-bold ph-check"></i> 3 mix + 2 master revízió</li>
                     </ul>
-                    <p class="pricing-ideal">Ideális: Ha nulláról indulsz és csúcsminőséget akarsz.</p>
-                    <a href="#contact" class="btn btn-solid">Kérd az ajánlatot</a>
+                    <a href="#contact" class="btn">Árajánlat kérése</a>
                 </div>
 
-                <div class="pricing-card">
+                <div class="pricing-card glass-panel">
                     <h3>Film & Reklám</h3>
-                    <div class="price">Egyedi árajánlat</div>
+                    <div class="price">Egyedi ajánlat</div>
                     <ul class="pricing-features">
-                        <li>Dialógus tisztítás és összevágás</li>
-                        <li>Hangeffektek készítése</li>
-                        <li>Sound design és Foley</li>
-                        <li>TV/Webszabvány utómunka</li>
-                        <li>EBU R128 mastering</li>
+                        <li><i class="ph-bold ph-check"></i> Dialógus tisztítás és összevágás</li>
+                        <li><i class="ph-bold ph-check"></i> Hangeffektek készítése</li>
+                        <li><i class="ph-bold ph-check"></i> Sound design és Foley</li>
+                        <li><i class="ph-bold ph-check"></i> TV/Webszabvány utómunka (R128)</li>
                     </ul>
-                    <p class="pricing-ideal">Ideális: Reklámfilmek, kisfilmek, YouTube videók.</p>
-                    <a href="#contact" class="btn">Kérd az ajánlatot</a>
+                    <a href="#contact" class="btn">Árajánlat kérése</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SZEKCIÓ 7: RÓLUNK MONDTÁK -->
-    <section class="section testimonials-section" id="testimonials">
+    <!-- SZEKCIÓ 6: KAPCSOLAT -->
+    <section class="section bg-alternate" id="contact">
         <div class="container fade-in">
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Dávid az első, akinél otthon éreztük magunkat a stúdióban. Nem
-                        feszültünk rá a hibákra, hanem a vibe-ra figyeltünk."</p>
-                    <div class="testimonial-author">
-                        <!-- TODO: Cseréld ki a valódi tartalomra -->
-                        <div class="author-img"></div>
-                        <div class="author-info">
-                            <!-- TODO: Cseréld ki a valódi tartalomra -->
-                            <h5>[ZENEKÁR_1]</h5>
-                            <span>Punk/Rock zenekar</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"A keverés után nem hittünk a fülünknek. Tomszi teljesen más szintre
-                        emelte a dalokat, olyan energiát hozott ki a sávokból, amiről nem is tudtuk, hogy ott van."</p>
-                    <div class="testimonial-author">
-                        <!-- TODO: Cseréld ki a valódi tartalomra -->
-                        <div class="author-img"></div>
-                        <div class="author-info">
-                            <!-- TODO: Cseréld ki a valódi tartalomra -->
-                            <h5>[ZENEKÁR_2]</h5>
-                            <span>Modern Metal</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"A hangutómunka profi volt és gyors. Megmentettek nekünk egy hibés
-                        helyszíni hangot, a sound design pedig sokat tett a hangulathoz. Következő filmünkhöz is őket
-                        kérjük."</p>
-                    <div class="testimonial-author">
-                        <!-- TODO: Cseréld ki a valódi tartalomra -->
-                        <div class="author-img"></div>
-                        <div class="author-info">
-                            <!-- TODO: Cseréld ki a valódi tartalomra -->
-                            <h5>[RENDEZŐ_1]</h5>
-                            <span>Reindeer Cinema</span>
-                        </div>
-                    </div>
-                </div>
+            <div style="text-align: center;">
+                <span class="section-label">Kapcsolat</span>
+                <h2>Van egy dalod, ami megérdemli, hogy profin szóljon?</h2>
+                <p>Kattints az alábbi elérhetőségek egyikére, foglalj egy kötetlen konzultációt, vagy küldj nekünk
+                    üzenetet!</p>
             </div>
-        </div>
-    </section>
-
-    <!-- SZEKCIÓ 8: LEAD MAGNET -->
-    <section class="section lead-magnet-section">
-        <div class="container fade-in">
-            <div class="lead-magnet-content">
-                <h2>Készülsz a stúdióba?</h2>
-                <p>Töltsd le az ingyenes <strong>Felvétel-előkészítő Checklistet</strong> — 7 kritikus dolog, amit
-                    csinálj meg a stúdió ELŐTT, hogy ne a drága stúdióidőt és a mi idegeinket égesd.</p>
-
-                <!-- TODO: Cseréld ki a valódi tartalomra -->
-                <form action="#" method="POST" class="optin-form">
-                    <input type="email" name="email" class="optin-input" placeholder="Az email címed..." required>
-                    <button type="submit" class="btn btn-solid">Kérem a Checklistet</button>
-                </form>
-                <span class="spam-note">Nem spammelünk. Maximum havi 1 levél hasznos tippekkel vagy hírekkel.</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- SZEKCIÓ 9: KAPCSOLAT -->
-    <section class="section contact-section" id="contact">
-        <div class="container fade-in">
-            <span
-                style="color: var(--accent); text-transform:uppercase; letter-spacing: 2px; font-size: 0.8rem;">Dolgozzunk
-                együtt</span>
-            <h2>Van egy dalod, ami megérdemli, hogy jól szóljon?</h2>
-            <p>Írj nekünk, küldj felvételeket, beszélgessünk.</p>
 
             <div class="contact-links">
+                <!-- Új Calendly/Cal.com gomb a contact részben is -->
+                <a href="https://cal.com/vitanyi-david" target="_blank" class="contact-link"
+                    aria-label="Időpontfoglalás">
+                    <div class="contact-icon"
+                        style="background: rgba(212, 175, 55, 0.15); border-color: var(--accent);"><i
+                            class="ph-fill ph-calendar-plus"></i></div>
+                    <span style="color:var(--accent); font-weight: 600; font-size: 1.1rem;">Naptár / Foglalás</span>
+                </a>
+
                 <a href="mailto:david@modusrecording.hu" class="contact-link" aria-label="E-mail">
-                    <div class="contact-icon">✉</div>
-                    <span>david@modusrecording.hu</span>
+                    <div class="contact-icon"><i class="ph ph-envelope-simple"></i></div>
+                    <span style="color:var(--text-main); font-weight: 500;">Emailben írok</span>
                 </a>
+
                 <a href="https://m.me/modus.recording" target="_blank" class="contact-link" aria-label="Messenger">
-                    <div class="contact-icon">💬</div>
-                    <span>Messenger Üzenet</span>
+                    <div class="contact-icon"><i class="ph ph-messenger-logo"></i></div>
+                    <span style="color:var(--text-main); font-weight: 500;">Messenger Üzenet</span>
                 </a>
+
                 <a href="https://www.instagram.com/modus.recording/" target="_blank" class="contact-link"
                     aria-label="Instagram">
-                    <div class="contact-icon">📸</div>
-                    <span>@modus.recording</span>
+                    <div class="contact-icon"><i class="ph ph-instagram-logo"></i></div>
+                    <span style="color:var(--text-main); font-weight: 500;">@modus.recording</span>
                 </a>
             </div>
         </div>
@@ -1357,17 +1085,74 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Modus Recording — Budapest, VII. kerület. "A hang, amit megérdemelsz."</p>
+            <p style="font-size: 0.9rem; color: #555;">&copy; 2025 Modus Recording — Budapest. "A hang, amit
+                megérdemelsz."</p>
         </div>
     </footer>
 
     <!-- JAVASCRIPT -->
     <script>
-        // 1. Intersection Observer for Fade-In Animations
+        // 1. Navbar Scroll Effect & ScrollSpy Logic
+        const navbar = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section[id], header[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            // Navbar background effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.add('scrolled'); // always keep it due to design choice, or toggle it. Let's toggle slightly
+                navbar.style.background = `rgba(3, 4, 3, ${Math.min(0.98, 0.85 + window.scrollY / 500)})`;
+            }
+
+            // ScrollSpy
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinksContainer = document.getElementById('navLinks');
+        mobileToggle.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('show');
+            const icon = mobileToggle.querySelector('i');
+            if (navLinksContainer.classList.contains('show')) {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            } else {
+                icon.classList.add('ph-list');
+                icon.classList.remove('ph-x');
+            }
+        });
+
+        // Hide mobile menu on link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('show');
+                mobileToggle.querySelector('i').classList.add('ph-list');
+                mobileToggle.querySelector('i').classList.remove('ph-x');
+            });
+        });
+
+        // 2. Intersection Observer for Fade-in Animations
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = {
                 threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
+                rootMargin: "0px"
             };
 
             const observer = new IntersectionObserver((entries) => {
@@ -1384,192 +1169,160 @@
             });
         });
 
-        // 2. Web Audio API kapocslista + DEMO mód generátor
-        class AudioCompareWidget {
-            constructor(playBtn, slider, type) {
-                this.playBtn = playBtn;
-                this.slider = slider;
-                this.trackType = type; // 'hero' or 'portfolio'
+        // 3. Advanced Web Audio API Player (Real File Fetching)
+        class TrueAudioPlayer {
+            constructor(container) {
+                this.container = container;
+                this.playBtn = container.querySelector('.play-btn');
+                this.slider = container.querySelector('.audio-slider');
+                this.loadingText = container.querySelector('.loading-text');
+                this.lblRaw = container.querySelector('#lbl-raw');
+                this.lblMix = container.querySelector('#lbl-mix');
 
-                this.rawUrl = slider.getAttribute('data-raw');
-                this.mixedUrl = slider.getAttribute('data-mixed');
+                this.rawUrl = this.slider.getAttribute('data-raw');
+                this.mixedUrl = this.slider.getAttribute('data-mixed');
 
-                // Demo mode switch
-                this.isDemoMode = !this.rawUrl || this.rawUrl.includes('[RAW_AUDIO_URL') || !this.mixedUrl || this.mixedUrl.includes('[MIXED_AUDIO_URL');
-
-                if (this.isDemoMode) {
-                    const badge = slider.closest('.audio-widget').querySelector('.demo-badge');
-                    if (badge) badge.style.display = 'block';
-                }
-
-                this.isPlaying = false;
                 this.audioCtx = null;
-
-                // Real files
                 this.rawSource = null;
                 this.mixedSource = null;
-                this.rawBuffer = null;
-                this.mixedBuffer = null;
-
-                // Demo oscillator setups
-                this.rawOscs = [];
-                this.mixedOscs = [];
-
                 this.rawGain = null;
                 this.mixedGain = null;
 
-                this.isInitialized = false;
+                this.isPlaying = false;
+                this.isLoaded = false;
+                this.isLoading = false;
 
-                // Bind events
                 this.playBtn.addEventListener('click', () => this.togglePlay());
                 this.slider.addEventListener('input', (e) => this.setCrossfade(e.target.value));
             }
 
+            async fetchAndDecode(url) {
+                const response = await fetch(url);
+                const arrayBuffer = await response.arrayBuffer();
+                return await this.audioCtx.decodeAudioData(arrayBuffer);
+            }
+
             async initAudio() {
                 try {
+                    this.playBtn.classList.add('loading');
+                    this.playBtn.innerHTML = '';
+                    this.loadingText.style.display = 'block';
+                    this.isLoading = true;
+
                     const AudioContext = window.AudioContext || window.webkitAudioContext;
                     this.audioCtx = new AudioContext();
 
-                    // Create Gain Nodes for crossfading
+                    // Pre-fetch both files
+                    const [rawBuffer, mixedBuffer] = await Promise.all([
+                        this.fetchAndDecode(this.rawUrl),
+                        this.fetchAndDecode(this.mixedUrl)
+                    ]);
+
+                    // Create routing
                     this.rawGain = this.audioCtx.createGain();
                     this.mixedGain = this.audioCtx.createGain();
 
-                    // Optional slight master compression/limiting so it doesn't clip
-                    const compressor = this.audioCtx.createDynamicsCompressor();
-                    compressor.threshold.value = -3;
-                    compressor.knee.value = 10;
-                    compressor.ratio.value = 5;
-                    compressor.attack.value = 0.05;
-                    compressor.release.value = 0.25;
+                    this.rawGain.connect(this.audioCtx.destination);
+                    this.mixedGain.connect(this.audioCtx.destination);
 
-                    this.rawGain.connect(compressor);
-                    this.mixedGain.connect(compressor);
-                    compressor.connect(this.audioCtx.destination);
+                    // Create sources
+                    this.rawSource = this.audioCtx.createBufferSource();
+                    this.mixedSource = this.audioCtx.createBufferSource();
 
-                    if (this.isDemoMode) {
-                        this.setupDemoOscillators();
-                    } else {
-                        // Logic to load real files
-                        // This prevents downloading massive files immediately
-                        // Would use fetch() and audioCtx.decodeAudioData()
-                        // Since URLs are placeholders, this will fallback or error out.
-                        console.warn("Real URL provided but fetch not implemented in template. Falling back to demo.");
-                        this.setupDemoOscillators();
-                    }
+                    this.rawSource.buffer = rawBuffer;
+                    this.mixedSource.buffer = mixedBuffer;
 
-                    // Apply initial slider value
+                    this.rawSource.loop = true;
+                    this.mixedSource.loop = true;
+
+                    this.rawSource.connect(this.rawGain);
+                    this.mixedSource.connect(this.mixedGain);
+
+                    // Start synced
+                    const startTime = this.audioCtx.currentTime + 0.1;
+                    this.rawSource.start(startTime);
+                    this.mixedSource.start(startTime);
+
                     this.setCrossfade(this.slider.value);
-                    this.isInitialized = true;
+                    this.isLoaded = true;
+                    this.isLoading = false;
+
+                    this.loadingText.style.display = 'none';
+                    this.playBtn.classList.remove('loading');
+
                 } catch (e) {
-                    console.error("Web Audio API Init Error:", e);
-                    alert("A böngésződ nem támogatja a Web Audio API-t.");
+                    console.error("Audio Load Error:", e);
+                    alert("Hiba a hangfájlok betöltésekor. (Talán a szerver CORS tiltása). Cseréld ki a data-raw és data-mixed attribútumokat valódi mp3 URL-ekre!");
+                    this.isLoading = false;
+                    this.playBtn.classList.remove('loading');
+                    this.playBtn.innerHTML = '<i class="ph-fill ph-play"></i>';
                 }
             }
 
-            setupDemoOscillators() {
-                // Creates a rich synth chord for DEMO
-                const baseFreq = 220; // A3
-                const chords = [1, 1.25, 1.5]; // Major chord ratio
-
-                // Nyers: egyszerű sápadt szinusz hullámok
-                chords.forEach(ratio => {
-                    const osc = this.audioCtx.createOscillator();
-                    osc.type = 'triangle';
-                    osc.frequency.value = baseFreq * ratio;
-                    osc.connect(this.rawGain);
-                    this.rawOscs.push(osc);
-                });
-
-                // Kevert: gazdagabb sawtooth szűrővel + élettel
-                // (Egyszerű lpf szűrő helyettesíti a keverést)
-                const filter = this.audioCtx.createBiquadFilter();
-                filter.type = 'lowpass';
-                filter.frequency.value = 800; // Tompább, melegebb
-                filter.connect(this.mixedGain);
-
-                chords.forEach(ratio => {
-                    const osc = this.audioCtx.createOscillator();
-                    osc.type = 'sawtooth';
-                    osc.frequency.value = (baseFreq / 2) * ratio; // egy oktávval lejjebb (vastagabb)
-                    osc.connect(filter);
-                    this.mixedOscs.push(osc);
-
-                    // Detune for fatness
-                    const osc2 = this.audioCtx.createOscillator();
-                    osc2.type = 'sawtooth';
-                    osc2.frequency.value = (baseFreq / 2) * ratio;
-                    osc2.detune.value = 15;
-                    osc2.connect(filter);
-                    this.mixedOscs.push(osc2);
-                });
-            }
-
             setCrossfade(value) {
-                if (!this.audioCtx) return;
+                if (!this.audioCtx && !this.isLoaded) {
+                    // Visual only
+                    this.slider.style.background = `linear-gradient(to right, #D4AF37 ${value}%, #333 ${value}%)`;
+                    return;
+                }
 
-                // value is 0-100
                 const fraction = value / 100;
 
                 // Equal power crossfade
                 const rawLevel = Math.cos(fraction * 0.5 * Math.PI);
                 const mixedLevel = Math.cos((1.0 - fraction) * 0.5 * Math.PI);
 
-                // Use setValueAtTime to prevent clicks/pops
                 if (this.rawGain) this.rawGain.gain.setValueAtTime(rawLevel, this.audioCtx.currentTime);
                 if (this.mixedGain) this.mixedGain.gain.setValueAtTime(mixedLevel, this.audioCtx.currentTime);
 
-                // Visual feedback on slider background via CSS variable or explicit style
-                this.slider.style.background = `linear-gradient(to right, #444 0%, #444 ${value}%, rgba(200, 160, 80, 0.4) ${value}%, rgba(200, 160, 80, 0.4) 100%)`;
+                this.slider.style.background = `linear-gradient(to right, #D4AF37 ${value}%, #333 ${value}%)`;
+
+                // Subtly highlight the active label text
+                if (value < 40) {
+                    this.lblRaw.style.color = 'var(--accent)';
+                    this.lblMix.style.color = 'var(--text-sec)';
+                } else if (value > 60) {
+                    this.lblRaw.style.color = 'var(--text-sec)';
+                    this.lblMix.style.color = 'var(--accent)';
+                } else {
+                    this.lblRaw.style.color = 'var(--accent)';
+                    this.lblMix.style.color = 'var(--accent)';
+                }
             }
 
             async togglePlay() {
-                if (!this.isInitialized) {
+                if (this.isLoading) return;
+
+                if (!this.isLoaded) {
                     await this.initAudio();
-                    // Start oscillators for demo
-                    this.rawOscs.forEach(o => o.start());
-                    this.mixedOscs.forEach(o => o.start());
+                    this.isPlaying = true;
+                    this.updateIcon();
+                    return;
                 }
 
                 if (this.audioCtx.state === 'suspended') {
                     await this.audioCtx.resume();
+                    this.isPlaying = true;
+                } else if (this.audioCtx.state === 'running') {
+                    await this.audioCtx.suspend();
+                    this.isPlaying = false;
                 }
 
-                this.isPlaying = !this.isPlaying;
+                this.updateIcon();
+            }
 
-                // Toggle UI
-                const playIcon = this.playBtn.querySelector('.icon-play');
-                const pauseIcon = this.playBtn.querySelector('.icon-pause');
-
+            updateIcon() {
                 if (this.isPlaying) {
-                    // Mute via main gain if it was "paused" through a master mute logic
-                    // Here we just use the rawGain and mixedGain that are already set
-
-                    // If demo mode, we just suspend/resume audio context
-                    if (this.audioCtx.state === 'suspended') {
-                        this.audioCtx.resume();
-                    }
-                    this.playBtn.classList.add('playing');
-                    playIcon.style.display = 'none';
-                    pauseIcon.style.display = 'block';
+                    this.playBtn.innerHTML = '<i class="ph-fill ph-pause"></i>';
                 } else {
-                    if (this.audioCtx.state === 'running') {
-                        this.audioCtx.suspend();
-                    }
-                    this.playBtn.classList.remove('playing');
-                    playIcon.style.display = 'block';
-                    pauseIcon.style.display = 'none';
+                    this.playBtn.innerHTML = '<i class="ph-fill ph-play"></i>';
                 }
             }
         }
 
-        // Initialize Audio Widgets
-        // Note: Browsers require user interaction to start AudioContext
+        // Init player
         document.querySelectorAll('.audio-widget').forEach(widget => {
-            const playBtn = widget.querySelector('.play-btn');
-            const slider = widget.querySelector('.audio-slider');
-            if (playBtn && slider) {
-                new AudioCompareWidget(playBtn, slider, 'widget');
-            }
+            new TrueAudioPlayer(widget);
         });
 
     </script>
