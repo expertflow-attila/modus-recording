@@ -32,15 +32,15 @@
 
     <style>
         :root {
-            /* V4: Reverted to Original Modus Gold Theme */
+            /* V5: Forest Green Theme */
             --bg-dark: #000000;
             --bg-panel: #0a0a0a;
             --border-color: #1a1a1a;
-            --accent: #D4AF37;
-            /* Original Gold */
-            --accent-glow: #d4af37b3;
-            /* Gold glow base */
-            --accent-hover: #e8c85c;
+            --accent: #2a8c44;
+            /* Deep premium forest green */
+            --accent-glow: rgba(42, 140, 68, 0.55);
+            /* Green ambient glow */
+            --accent-hover: #3dae5a;
             --text-main: #ffffff;
             --text-sec: #999999;
 
@@ -375,18 +375,17 @@
             z-index: 2;
         }
 
-        /* Pure cinematic background */
+        /* Forest background image */
         .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg');
+            background-image: url('vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/z%C3%B6ld.jpg');
             background-size: cover;
-            background-position: center 30%;
-            opacity: 0.3;
-            /* Re-darkened for readability */
+            background-position: center 40%;
+            opacity: 0.35;
             z-index: 0;
             transform: scale(1.05);
         }
@@ -831,17 +830,11 @@
                 </li>
             </ul>
 
-            <!-- 3. RIGHT ACTIONS -->
+            <!-- 3. RIGHT ACTIONS (Kapcsolat link + language toggle only, no social icons as requested) -->
             <div class="nav-actions">
                 <a href="#contact" class="nav-link" style="margin-right: 1rem;" data-hu="Kapcsolat"
                     data-en="Contact">Kapcsolat</a>
-                <div class="nav-socials">
-                    <a href="https://m.me/modus.recording" target="_blank" aria-label="Facebook"><i
-                            class="ph-fill ph-facebook-logo"></i></a>
-                    <a href="https://www.instagram.com/modus.recording/" target="_blank" aria-label="Instagram"><i
-                            class="ph-fill ph-instagram-logo"></i></a>
-                </div>
-                <div class="lang-toggle" style="margin-left: 1rem;">
+                <div class="lang-toggle" style="margin-left: 0.5rem;">
                     <span class="lang-btn lang-active" onclick="switchLang('hu')">HU</span>
                     <span style="color: #444;">|</span>
                     <span class="lang-btn lang-inactive" onclick="switchLang('en')">EN</span>
