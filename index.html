@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MODUS RECORDING | FELVÉTEL, KEVERÉS, MASTERING | BUDAPEST</title>
+    <title>MODUS RECORDING | BUDAPEST</title>
     <meta name="description"
         content="Független zenekarok és filmesek hangmérnöki partnere Budapesten. Felvétel, keverés, mastering, mobil stúdió.">
     <!-- Open Graph -->
@@ -32,15 +32,15 @@
 
     <style>
         :root {
-            /* Fascination style colors: True Black, Sharp Whites, and an aggressive accent. We keep Modus Gold but make it stark. */
+            /* V4: Reverted to Original Modus Gold Theme */
             --bg-dark: #000000;
             --bg-panel: #0a0a0a;
             --border-color: #1a1a1a;
-            --accent: #2e8f49;
-            /* Deep, vibrant studio green */
-            --accent-glow: #1df24db3;
-            /* Neon green glow base */
-            --accent-hover: #4ad66d;
+            --accent: #D4AF37;
+            /* Original Gold */
+            --accent-glow: #d4af37b3;
+            /* Gold glow base */
+            --accent-hover: #e8c85c;
             --text-main: #ffffff;
             --text-sec: #999999;
 
@@ -48,12 +48,10 @@
             --font-body: 'Inter', sans-serif;
 
             --nav-height: 90px;
-
-            /* No rounded corners for a sharp, premium, industrial look */
             --border-radius: 0px;
-
-            /* Spacing */
-            --section-padding: 160px;
+            /* Sharp industrial look */
+            --section-padding: 120px;
+            /* Reduced padding slightly from V3 */
         }
 
         html,
@@ -87,23 +85,24 @@
             text-transform: uppercase;
             margin: 0;
             line-height: 1.1;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.05em;
+            /* Add slight spacing for Syncopate readability */
         }
 
-        /* Ambient Cursor Glow */
+        /* Ambient Cursor Glow - Gold */
         #ambient-glow {
             position: fixed;
             top: 0;
             left: 0;
-            width: 60vw;
-            height: 60vw;
+            width: 50vw;
+            height: 50vw;
             border-radius: 50%;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 0;
-            /* Behind everything */
-            opacity: 0.2;
+            opacity: 0.15;
+            /* Subtler gold glow */
             transition: opacity 0.5s ease;
             mix-blend-mode: screen;
             filter: blur(80px);
@@ -112,8 +111,8 @@
         p {
             margin: 0 0 1.5rem 0;
             color: var(--text-sec);
-            font-size: 1.05rem;
-            line-height: 1.8;
+            font-size: 1rem;
+            line-height: 1.6;
             font-weight: 300;
         }
 
@@ -137,10 +136,11 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 1.2rem 2.8rem;
+            padding: 1rem 2.2rem;
             font-family: var(--font-head);
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            /* Reduced from V3 */
+            font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             border: 1px solid var(--text-main);
@@ -191,10 +191,13 @@
         .section {
             padding: var(--section-padding) 0;
             border-bottom: 1px solid var(--border-color);
+            position: relative;
+            z-index: 2;
+            /* Above ambient glow */
         }
 
         .section-header {
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
         }
 
         .section-label {
@@ -202,19 +205,20 @@
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             display: block;
             margin-bottom: 1.5rem;
         }
 
         .section-title {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            /* Further reduced for elegance */
             font-weight: 700;
             max-width: 900px;
         }
 
         /* =========================================================================
-           NAVIGATION
+           NAVIGATION (V4 Order: Logo | Szolg, Rólunk, Árak, Port | Kapcs, Social, Lang)
            ========================================================================= */
         .navbar {
             position: fixed;
@@ -242,15 +246,17 @@
             width: 100%;
         }
 
+        /* 1. Logo Left */
         .nav-logo {
             display: flex;
             align-items: center;
+            flex: 1;
+            /* Pushes center to center */
         }
 
         .nav-logo img {
-            height: 45px;
+            height: 40px;
             filter: brightness(0) invert(1);
-            /* Ensures logo is white on black background */
             transition: opacity 0.3s ease;
         }
 
@@ -258,18 +264,20 @@
             opacity: 0.8;
         }
 
+        /* 2. Main Links Center */
         .nav-links {
             display: flex;
-            gap: 3rem;
+            gap: 2.5rem;
             list-style: none;
             margin: 0;
             padding: 0;
+            justify-content: center;
         }
 
         .nav-link {
             font-family: var(--font-head);
-            font-size: 0.95rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             position: relative;
@@ -296,6 +304,54 @@
             color: var(--accent);
         }
 
+        /* 3. Action / Social Right */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 1;
+            justify-content: flex-end;
+            /* Pushes to right */
+        }
+
+        .nav-socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-socials a {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        .nav-socials a:hover {
+            color: var(--accent);
+        }
+
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .lang-active {
+            color: var(--accent);
+        }
+
+        .lang-inactive {
+            color: var(--text-sec);
+            transition: color 0.3s;
+        }
+
+        .lang-inactive:hover {
+            color: var(--text-main);
+        }
+
         .mobile-toggle {
             display: none;
             font-size: 2rem;
@@ -311,11 +367,12 @@
         .hero {
             position: relative;
             height: 100vh;
-            min-height: 800px;
+            min-height: 700px;
             display: flex;
             align-items: center;
             background-color: #000;
             overflow: hidden;
+            z-index: 2;
         }
 
         /* Pure cinematic background */
@@ -328,10 +385,10 @@
             background-image: url('vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/modus.jpg');
             background-size: cover;
             background-position: center 30%;
-            opacity: 0.4;
+            opacity: 0.3;
+            /* Re-darkened for readability */
             z-index: 0;
             transform: scale(1.05);
-            /* Slight zoom for premium feel */
         }
 
         .hero-content {
@@ -342,21 +399,22 @@
         }
 
         .hero-title {
-            font-size: clamp(4rem, 10vw, 9rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            /* Reduced further */
             font-weight: 700;
             line-height: 0.95;
             letter-spacing: 0em;
             margin-bottom: 2rem;
-            max-width: 1100px;
+            max-width: 1000px;
         }
 
         .hero-subtitle {
             font-family: var(--font-head);
-            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
             color: var(--accent);
-            letter-spacing: 0.25em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             max-width: 600px;
         }
 
@@ -364,6 +422,46 @@
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
+        }
+
+        /* =========================================================================
+           SERVICES
+           ========================================================================= */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card {
+            background: var(--bg-dark);
+            padding: 4vw;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.4s ease;
+        }
+
+        .service-card:hover {
+            background: var(--bg-panel);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .service-card p {
+            margin-bottom: 0;
+            flex-grow: 1;
         }
 
         /* =========================================================================
@@ -377,12 +475,11 @@
         }
 
         .about-text p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
             max-width: 600px;
         }
 
-        /* Massive cinematic portraits */
         .staff-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -402,35 +499,35 @@
             height: 100%;
             object-fit: cover;
             transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s ease;
-            filter: grayscale(100%) contrast(1.1);
+            filter: grayscale(0%) contrast(1.05);
+            /* User didn't like heavy filters */
         }
 
         .staff-member:hover img {
             transform: scale(1.03);
-            filter: grayscale(0%) contrast(1);
+            filter: contrast(1.1);
         }
 
         .staff-info {
             position: absolute;
-            bottom: 30px;
-            left: 30px;
+            bottom: 20px;
+            left: 20px;
             z-index: 2;
         }
 
         .staff-info h3 {
-            font-size: 2rem;
+            font-size: 1.4rem;
             margin-bottom: 5px;
         }
 
         .staff-info span {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        /* Gradient overlay for text readability */
         .staff-member::after {
             content: '';
             position: absolute;
@@ -440,65 +537,6 @@
             height: 50%;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
             pointer-events: none;
-        }
-
-
-        /* =========================================================================
-           MODUS SERVICES (Hard blocks)
-           ========================================================================= */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            /* 1px gaps with panel background creates hairline borders */
-            background: var(--border-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .service-card {
-            background: var(--bg-dark);
-            padding: 5vw;
-            display: flex;
-            flex-direction: column;
-            transition: background 0.4s ease;
-        }
-
-        .service-card:hover {
-            background: var(--bg-panel);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-
-        .service-card h3 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card p {
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        /* =========================================================================
-           PORTFOLIO / WORK
-           ========================================================================= */
-
-        /* Portfolio Media Grid */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .media-item iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            background: #111;
         }
 
         /* =========================================================================
@@ -525,39 +563,69 @@
         }
 
         .rate-card h3 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
         .rate-price {
-            font-size: 1.5rem;
-            font-weight: 400;
+            font-size: 1.2rem;
+            font-weight: 500;
             color: var(--text-sec);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             font-family: var(--font-body);
         }
 
         .rate-features {
             list-style: none;
             padding: 0;
-            margin: 0 0 4rem 0;
+            margin: 0 0 3rem 0;
             flex-grow: 1;
         }
 
         .rate-features li {
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             border-bottom: 1px solid #1a1a1a;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #ddd;
             display: flex;
             align-items: flex-start;
-            gap: 15px;
+            gap: 12px;
         }
 
         .rate-features li i {
             color: var(--accent);
-            font-size: 1.2rem;
-            margin-top: 3px;
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        /* =========================================================================
+           PORTFOLIO / WORK
+           ========================================================================= */
+        /* 3 Videos side by side */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .media-item iframe {
+            width: 100%;
+            height: 280px;
+            border: none;
+            background: #111;
+            display: block;
+        }
+
+        .spotify-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .spotify-container iframe {
+            border-radius: 0;
+            border: none;
+            display: block;
         }
 
         /* =========================================================================
@@ -579,7 +647,7 @@
 
         .c-box {
             background: var(--bg-dark);
-            padding: 3rem;
+            padding: 2.5rem;
             display: flex;
             align-items: center;
             gap: 2rem;
@@ -591,19 +659,19 @@
         }
 
         .c-box i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--accent);
         }
 
         .c-box-content h4 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 5px;
         }
 
         .c-box-content span {
             font-family: var(--font-body);
             color: var(--text-sec);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         /* =========================================================================
@@ -611,21 +679,25 @@
            ========================================================================= */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 4rem 0;
+            padding: 3rem 0;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         footer img {
             height: 40px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
         }
 
         footer p {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #666;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            font-family: var(--font-head);
         }
 
         /* =========================================================================
@@ -633,8 +705,8 @@
            ========================================================================= */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .reveal.active {
@@ -662,6 +734,10 @@
             .staff-grid {
                 grid-template-columns: 1fr;
             }
+
+            .nav-actions {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -676,6 +752,7 @@
                 border-bottom: 1px solid var(--border-color);
                 clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
                 transition: clip-path 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+                justify-content: flex-start;
             }
 
             .nav-links.show {
@@ -689,21 +766,24 @@
                 font-size: 1.2rem;
             }
 
+            /* Show lang/socials in mobile menu at bottom */
+            .nav-actions-mobile {
+                display: flex;
+                flex-direction: column;
+                padding: 1.5rem 5%;
+                gap: 1.5rem;
+            }
+
             .mobile-toggle {
                 display: block;
             }
 
-            .hardware-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .play-btn {
-                align-self: center;
-            }
-
             :root {
                 --section-padding: 80px;
+            }
+
+            .media-item iframe {
+                height: 250px;
             }
         }
     </style>
@@ -712,29 +792,61 @@
 <body>
 
     <!-- AMBIENT GLOW -->
-    <div id="ambient-glow"></div>
+    <div id="ambient-glow" style="background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);"></div>
 
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
-            <a href="#hero" class="nav-logo">
-                <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/LOGO.png"
-                    alt="Modus Recording Logo">
-            </a>
+            <!-- 1. LEFT LOGO -->
+            <div class="nav-logo">
+                <a href="#hero">
+                    <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/LOGO.png"
+                        alt="Modus Recording Logo">
+                </a>
+            </div>
 
+            <!-- 2. CENTER LINKS -->
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about" class="nav-link">Sztori & Csapat</a></li>
-                <li><a href="#services" class="nav-link">Szolgáltatások</a></li>
-                <li><a href="#portfolio" class="nav-link">Portfólió</a></li>
-                <li><a href="#rates" class="nav-link">Árak</a></li>
-                <li><a href="#contact" class="nav-link">Kapcsolat</a></li>
+                <li><a href="#services" class="nav-link" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</a>
+                </li>
+                <li><a href="#about" class="nav-link" data-hu="Rólunk" data-en="About">Rólunk</a></li>
+                <li><a href="#rates" class="nav-link" data-hu="Árak" data-en="Rates">Árak</a></li>
+                <li><a href="#portfolio" class="nav-link" data-hu="Portfólió" data-en="Portfolio">Portfólió</a></li>
+
+                <!-- Mobile only extra actions -->
+                <li class="nav-actions-mobile" style="display: none;">
+                    <a href="#contact" class="nav-link" style="border:none;" data-hu="Kapcsolat"
+                        data-en="Contact">Kapcsolat</a>
+                    <div class="nav-socials" style="padding-left: 5%;">
+                        <a href="https://m.me/modus.recording" target="_blank" aria-label="Facebook"><i
+                                class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="https://www.instagram.com/modus.recording/" target="_blank" aria-label="Instagram"><i
+                                class="ph-fill ph-instagram-logo"></i></a>
+                    </div>
+                    <div class="lang-toggle" style="padding-left: 5%;">
+                        <span class="lang-btn lang-active" onclick="switchLang('hu')">HU</span>
+                        <span style="color: #444;">|</span>
+                        <span class="lang-btn lang-inactive" onclick="switchLang('en')">EN</span>
+                    </div>
+                </li>
             </ul>
 
-            <!-- Book button goes straight to Calendly -->
-            <a href="https://cal.com/vitanyi-david" target="_blank" class="btn btn-accent"
-                style="padding: 0.8rem 1.5rem; font-size: 0.9rem; display: none;" id="navBookBtn">
-                Foglalás
-            </a>
+            <!-- 3. RIGHT ACTIONS -->
+            <div class="nav-actions">
+                <a href="#contact" class="nav-link" style="margin-right: 1rem;" data-hu="Kapcsolat"
+                    data-en="Contact">Kapcsolat</a>
+                <div class="nav-socials">
+                    <a href="https://m.me/modus.recording" target="_blank" aria-label="Facebook"><i
+                            class="ph-fill ph-facebook-logo"></i></a>
+                    <a href="https://www.instagram.com/modus.recording/" target="_blank" aria-label="Instagram"><i
+                            class="ph-fill ph-instagram-logo"></i></a>
+                </div>
+                <div class="lang-toggle" style="margin-left: 1rem;">
+                    <span class="lang-btn lang-active" onclick="switchLang('hu')">HU</span>
+                    <span style="color: #444;">|</span>
+                    <span class="lang-btn lang-inactive" onclick="switchLang('en')">EN</span>
+                </div>
+            </div>
 
             <button class="mobile-toggle" id="mobileToggle">
                 <i class="ph ph-list"></i>
@@ -746,30 +858,73 @@
     <header class="hero" id="hero">
         <div class="hero-bg"></div>
         <div class="container hero-content reveal">
-            <div class="hero-subtitle">Modus Recording // Budapest</div>
-            <h1 class="hero-title">A zene nem vész el a gombok között.</h1>
+            <div class="hero-subtitle" data-hu="Budapest | Felvétel, Keverés, Mastering"
+                data-en="Budapest | Tracking, Mixing, Mastering">Budapest | Felvétel, Keverés, Mastering</div>
+            <h1 class="hero-title" data-hu="Üdvözlünk a Modus Recordingban." data-en="Welcome to Modus Recording.">
+                Üdvözlünk a Modus Recordingban.
+            </h1>
             <div class="hero-actions">
-                <a href="#portfolio" class="btn btn-accent">Munkáink</a>
-                <a href="https://cal.com/vitanyi-david" target="_blank" class="btn">Stúdióidő foglalás</a>
+                <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                    class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book Session">Időpontfoglalás</a>
+                <a href="#portfolio" class="btn" data-hu="Munkáink" data-en="Our Work">Munkáink</a>
             </div>
         </div>
     </header>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label" data-hu="Fókuszterületek" data-en="Core Areas">Fókuszterületek</span>
+                <h2 class="section-title" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</h2>
+            </div>
+
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <i class="ph-light ph-microphone-stage service-icon"></i>
+                    <h3 data-hu="Felvétel" data-en="Recording">Felvétel</h3>
+                    <p data-hu="Dolgozz velünk stúdiónkban vagy a te helyszíneden energiával teli, kristálytiszta hangzáson."
+                        data-en="Work with us in our studio or on location to create a crystal-clear, energetic sound.">
+                        Dolgozz velünk stúdiónkban vagy a te helyszíneden energiával teli, kristálytiszta hangzáson.</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="ph-light ph-sliders service-icon"></i>
+                    <h3 data-hu="Keverés" data-en="Mixing">Keverés</h3>
+                    <p data-hu="A jó keverés nélkül nincs jó hangzás. Találjuk meg a zenéd egyedi karakterét."
+                        data-en="Without a great mix, there will be no great sound. Find your unique character.">A jó
+                        keverés nélkül nincs jó hangzás. Találjuk meg a zenéd egyedi karakterét.</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="ph-light ph-film-slate service-icon"></i>
+                    <h3 data-hu="Mastering" data-en="Mastering">Mastering</h3>
+                    <p data-hu="Az utolsó lépés. Professzionális master, ami minden eszközön hibátlanul szól."
+                        data-en="The final frontier. A professional master that translates flawlessly across all systems.">
+                        Az utolsó lépés. Professzionális master, ami minden eszközön hibátlanul szól.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ABOUT & STAFF -->
     <section class="section" id="about">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Rólunk</span>
-                <h2 class="section-title">Kőkemény fókusz az üzeneten.</h2>
+                <span class="section-label" data-hu="A Csapat" data-en="The Team">A Csapat</span>
+                <h2 class="section-title" data-hu="Rólunk" data-en="About Us">Rólunk</h2>
             </div>
 
             <div class="about-grid reveal">
                 <div class="about-text">
-                    <p>A Modus Recording nem egy klasszikus, lélektelen stúdióipari futószalag. Abban hiszünk, hogy
-                        minden dalnak saját karaktere van, amit nem szabad sablonokkal elnyomni.</p>
-                    <p>Nem a presztízs miatt pörgetjük a fadereket. A technika csak eszköz (bár az eszközparkunk
-                        komoly). A legfontosabb, hogy az üzeneted és a zenéd csorbítatlanul átjöjjön a hangfalakon.
-                        Nyers erő és kőkemény precizitás.</p>
+                    <p data-hu="A világ legkiválóbb rock/metal és független produkcióit célzó stúdió. Hatásunk a hazai zenei színtéren kiemelkedő. Mindent vállalunk a teljes produkciótól az online keverésig és masteringig."
+                        data-en="A premier facility for metal music and beyond. Our impact on the scene is second to none. We do everything from full productions to remote mixing and mastering.">
+                        A világ legkiválóbb rock/metal és független produkcióit célzó stúdió. Hatásunk a hazai zenei
+                        színtéren kiemelkedő. Mindent vállalunk a teljes produkciótól az online keverésig és
+                        masteringig.</p>
+                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                        class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book Session"
+                        style="margin-top: 1rem;">Időpontfoglalás</a>
                 </div>
 
                 <div class="staff-grid">
@@ -778,7 +933,7 @@
                             alt="Vitányi Dávid" loading="lazy">
                         <div class="staff-info">
                             <h3>Vitányi Dávid</h3>
-                            <span>Producer / Vibe</span>
+                            <span data-hu="Kreatív Vibe" data-en="Creative Vibe">Kreatív Vibe</span>
                         </div>
                     </div>
                     <div class="staff-member">
@@ -786,7 +941,7 @@
                             alt="Tomszi" loading="lazy">
                         <div class="staff-info">
                             <h3>Tomszi</h3>
-                            <span>Mix / Master</span>
+                            <span data-hu="Precíz Mix" data-en="Precision Mix">Precíz Mix</span>
                         </div>
                     </div>
                 </div>
@@ -794,48 +949,74 @@
         </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="section" id="services">
+    <!-- RATES -->
+    <section class="section" id="rates">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Fókuszterületek</span>
-                <h2 class="section-title">Szolgáltatások</h2>
+                <span class="section-label" data-hu="Transzparencia" data-en="Transparency">Transzparencia</span>
+                <h2 class="section-title" data-hu="Árak & Csomagok" data-en="Rates & Packages">Árak & Csomagok</h2>
             </div>
 
-            <div class="services-grid reveal">
-                <div class="service-card">
-                    <i class="ph ph-microphone-stage service-icon"></i>
-                    <h3>Felvétel</h3>
-                    <p>Kimegyünk hozzátok, vagy gyertek hozzánk. Mobil stúdiónkkal bárhol felveszünk — próbateremben,
-                        templomban, nappaliban. A felvétel minősége dönti el a végeredményt.</p>
+            <div class="rates-grid reveal">
+                <div class="rate-card">
+                    <h3>Mix & Master</h3>
+                    <div class="rate-price" data-hu="~50-60k Ft / dal" data-en="~50-60k HUF / song">~50-60k Ft / dal
+                    </div>
+                    <ul class="rate-features">
+                        <li data-hu="Otthoni/stúdió felvételedből" data-en="From your D.I.Y. tracks"><i
+                                class="ph-bold ph-check"></i> Otthoni/stúdió felvételedből</li>
+                        <li data-hu="Nyitott soksávos utómunka" data-en="Multi-track mixing"><i
+                                class="ph-bold ph-check"></i> Nyitott soksávos utómunka</li>
+                        <li data-hu="3 mix + 2 master revízió" data-en="3 mix + 2 master revisions"><i
+                                class="ph-bold ph-check"></i> 3 mix + 2 master revízió</li>
+                    </ul>
+                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                        class="btn" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
 
-                <div class="service-card">
-                    <i class="ph ph-sliders service-icon"></i>
-                    <h3>Mix / Master</h3>
-                    <p>Rock, punk, hip-hop, metal, akusztikus. Nem template-ből dolgozunk — minden szám egyedi figyelmet
-                        kap. 3 mix revízió + 2 master revízió benne van az árban.</p>
+                <div class="rate-card">
+                    <h3 data-hu="Teljes Produkció" data-en="Full Production">Teljes Produkció</h3>
+                    <div class="rate-price" data-hu="~120-150k Ft / dal" data-en="~120-150k HUF / song">~120-150k Ft /
+                        dal</div>
+                    <ul class="rate-features">
+                        <li data-hu="Pre-production konzultáció" data-en="Pre-production consult"><i
+                                class="ph-bold ph-check"></i> Pre-production konzultáció</li>
+                        <li data-hu="Felvétel mobil stúdióval" data-en="Tracking with mobile studio"><i
+                                class="ph-bold ph-check"></i> Felvétel mobil stúdióval</li>
+                        <li data-hu="Mix & Prémium Mastering" data-en="Mix & Premium Mastering"><i
+                                class="ph-bold ph-check"></i> Mix & Prémium Mastering</li>
+                    </ul>
+                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                        class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
                 </div>
 
-                <div class="service-card">
-                    <i class="ph ph-film-slate service-icon"></i>
-                    <h3>Film Hang</h3>
-                    <p>Dialógus-összevágás, hangeffektek, sound design, teljes utómunka reklámfilmekhez, kisfilmekhez és
-                        YouTube-produkciókhoz a legmagasabb broadcast standardekkel.</p>
+                <div class="rate-card">
+                    <h3 data-hu="Film & Reklám" data-en="Film & Ads">Film & Reklám</h3>
+                    <div class="rate-price" data-hu="Egyedi ajánlat" data-en="Custom Output">Egyedi ajánlat</div>
+                    <ul class="rate-features">
+                        <li data-hu="Dialógus tisztítás" data-en="Dialogue editing"><i class="ph-bold ph-check"></i>
+                            Dialógus tisztítás</li>
+                        <li data-hu="Sound design & Foley" data-en="Sound design & Foley"><i
+                                class="ph-bold ph-check"></i> Sound design & Foley</li>
+                        <li data-hu="Web / TV standard (R128)" data-en="Web / TV standard (R128)"><i
+                                class="ph-bold ph-check"></i> Web / TV standard (R128)</li>
+                    </ul>
+                    <a href="mailto:david@modusrecording.hu" class="btn" data-hu="Egyeztetés"
+                        data-en="Email Us">Egyeztetés</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO -->
+    <!-- PORTFOLIO / WORK (Moved to Bottom as Requested) -->
     <section class="section" id="portfolio">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Referenciák</span>
-                <h2 class="section-title">A végeredmény hangosan beszél.</h2>
+                <span class="section-label" data-hu="Referenciák" data-en="Work">Referenciák</span>
+                <h2 class="section-title" data-hu="Portfólió" data-en="Portfolio">Portfólió</h2>
             </div>
 
-            <!-- Clean Video Grid -->
+            <!-- 3 Videos in a row -->
             <div class="media-grid reveal">
                 <div class="media-item">
                     <iframe src="https://www.youtube.com/embed/H-eeDWnmgLo" title="YouTube video player"
@@ -849,63 +1030,17 @@
                     <iframe src="https://www.youtube.com/embed/FTeQoL50voU" title="YouTube video player"
                         allowfullscreen></iframe>
                 </div>
-                <div class="media-item"
-                    style="display:flex; align-items:center; justify-content:center; border: 1px solid var(--border-color); flex-direction: column; gap: 20px;">
-                    <i class="ph-light ph-spotify-logo" style="font-size: 4rem; color: #1DB954;"></i>
-                    <span
-                        style="font-family:var(--font-head); letter-spacing:0.1em; color:var(--text-sec); text-transform:uppercase;">További
-                        dalok hamarosan</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RATES -->
-    <section class="section" id="rates">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Transzparencia</span>
-                <h2 class="section-title">Árak & Csomagok</h2>
             </div>
 
-            <div class="rates-grid reveal">
-                <div class="rate-card">
-                    <h3>Mix & Master</h3>
-                    <div class="rate-price">~50-60k Ft / dal</div>
-                    <ul class="rate-features">
-                        <li><i class="ph-bold ph-check"></i> Saját otthoni/stúdió felvételedből</li>
-                        <li><i class="ph-bold ph-check"></i> Nyitott soksávos utómunka</li>
-                        <li><i class="ph-bold ph-check"></i> Vokál tune, időzítés javítás</li>
-                        <li><i class="ph-bold ph-check"></i> 3 mix + 2 master revízió</li>
-                    </ul>
-                    <a href="https://cal.com/vitanyi-david" target="_blank" class="btn">Foglalás</a>
-                </div>
-
-                <div class="rate-card">
-                    <h3>Teljes Produkció</h3>
-                    <div class="rate-price">~120-150k Ft / dal</div>
-                    <ul class="rate-features">
-                        <li><i class="ph-bold ph-check"></i> Pre-production konzultáció</li>
-                        <li><i class="ph-bold ph-check"></i> Felvétel nálunk vagy mobil stúdióval</li>
-                        <li><i class="ph-bold ph-check"></i> Kreatív hangszerelés tippek</li>
-                        <li><i class="ph-bold ph-check"></i> Teljes keverés és prémium mastering</li>
-                        <li><i class="ph-bold ph-check"></i> 3 mix + 2 master revízió</li>
-                    </ul>
-                    <a href="https://cal.com/vitanyi-david" target="_blank" class="btn btn-accent">Foglalás</a>
-                </div>
-
-                <div class="rate-card">
-                    <h3>Film & Reklám</h3>
-                    <div class="rate-price">Egyedi ajánlat</div>
-                    <ul class="rate-features">
-                        <li><i class="ph-bold ph-check"></i> Dialógus tisztítás és összevágás</li>
-                        <li><i class="ph-bold ph-check"></i> Hangeffektek készítése</li>
-                        <li><i class="ph-bold ph-check"></i> Sound design és Foley</li>
-                        <li><i class="ph-bold ph-check"></i> TV/Webszabvány utómunka (R128)</li>
-                    </ul>
-                    <a href="#contact" class="btn">Árajánlat kérése</a>
-                </div>
+            <!-- Spotify full width below videos -->
+            <div class="spotify-container reveal">
+                <iframe style="border-radius:0px"
+                    src="https://open.spotify.com/embed/playlist/37i9dQZF1E4DWeqP3A3g8E?utm_source=generator&theme=0"
+                    width="100%" height="352" frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"></iframe>
             </div>
+
         </div>
     </section>
 
@@ -913,38 +1048,27 @@
     <section class="section" id="contact" style="border-bottom: none;">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">Kapcsolat</span>
-                <h2 class="section-title">Megérdemled, hogy profin szóljon.</h2>
+                <span class="section-label" data-hu="Elérhetőségek" data-en="Reach Out">Elérhetőségek</span>
+                <h2 class="section-title" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</h2>
             </div>
 
             <div class="contact-grid reveal">
                 <div class="about-text">
-                    <p style="font-size: 1.5rem; color: #fff; margin-bottom: 2rem;">Foglalj egy kötetlen konzultációt,
-                        vagy küldj nekünk üzenetet, és átbeszéljük az anyagot.</p>
-                    <a href="https://cal.com/vitanyi-david" target="_blank" class="btn btn-accent"
-                        style="margin-bottom: 2rem;">Naptár / Időpontfoglalás</a>
+                    <p data-hu="Mit tehetünk érted? Keress minket bátran árajánlatért, egyeztetésért, vagy foglald le a stúdióidődet online!"
+                        data-en="What can we do for you? Contact us for a quote, or book your session right here.">
+                        Mit tehetünk érted? Keress minket bátran árajánlatért, egyeztetésért, vagy foglald le a
+                        stúdióidődet online!</p>
+                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
+                        class="btn btn-accent" style="margin-bottom: 2rem;" data-hu="Időpontfoglalás"
+                        data-en="Book Session">Időpontfoglalás</a>
                 </div>
 
                 <div class="contact-boxes">
-                    <a href="mailto:david@modusrecording.hu" class="c-box">
-                        <i class="ph ph-envelope-simple"></i>
+                    <a href="mailto:david@modusrecording.hu?subject=Stúdió érdeklődés" class="c-box">
+                        <i class="ph-light ph-envelope-simple"></i>
                         <div class="c-box-content">
-                            <h4>Email</h4>
+                            <h4 data-hu="Email" data-en="Email">Email</h4>
                             <span>david@modusrecording.hu</span>
-                        </div>
-                    </a>
-                    <a href="https://m.me/modus.recording" target="_blank" class="c-box">
-                        <i class="ph ph-messenger-logo"></i>
-                        <div class="c-box-content">
-                            <h4>Messenger</h4>
-                            <span>Írj ránk Facebookon</span>
-                        </div>
-                    </a>
-                    <a href="https://www.instagram.com/modus.recording/" target="_blank" class="c-box">
-                        <i class="ph ph-instagram-logo"></i>
-                        <div class="c-box-content">
-                            <h4>Instagram</h4>
-                            <span>@modus.recording</span>
                         </div>
                     </a>
                 </div>
@@ -952,17 +1076,70 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER WITH MAP -->
     <footer>
         <div class="container">
-            <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/LOGO.png" alt="Modus Logo"
-                style="filter: brightness(0) invert(1); height: 50px; margin-bottom: 2rem;">
-            <p>&copy; 2025 MODUS RECORDING. MINDEN JOG FENNTARTVA.</p>
+            <div
+                style="margin-bottom: 3rem; width: 100%; height: 350px; background: #111; overflow: hidden; filter: grayscale(100%) contrast(1.2);">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86280.99958379058!2d18.966953335028485!3d47.48123010534951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741c334d1d4cfc9%3A0x400c4290c1e1160!2sBudapest!5e0!3m2!1sen!2shu!4v1707920158866!5m2!1sen!2shu"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/LOGO.png" alt="Modus Logo">
+            <p>&copy; 2025 MODUS RECORDING.</p>
         </div>
     </footer>
 
     <!-- SCRIPTS -->
     <script>
+        // Language Toggle Logic
+        let currentLang = 'hu';
+        const translatableElements = document.querySelectorAll('[data-hu]');
+
+        function switchLang(lang) {
+            if (lang === currentLang) return;
+            currentLang = lang;
+
+            // Visual active state for buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.innerText.toLowerCase() === lang) {
+                    btn.classList.add('lang-active');
+                    btn.classList.remove('lang-inactive');
+                } else {
+                    btn.classList.add('lang-inactive');
+                    btn.classList.remove('lang-active');
+                }
+            });
+
+            // Swap text content using simple fade
+            translatableElements.forEach(el => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    // Quick check if input placeholder or innerHTML
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = el.getAttribute(`data-${lang}`);
+                    } else {
+                        // Preserve inner HTML structure if icons exist
+                        const htmlContent = el.innerHTML;
+                        if (htmlContent.includes('<i ')) {
+                            const iconHtml = htmlContent.substring(0, htmlContent.indexOf('</i>') + 4);
+                            el.innerHTML = iconHtml + ' ' + el.getAttribute(`data-${lang}`);
+                        } else {
+                            el.innerHTML = el.getAttribute(`data-${lang}`);
+                        }
+                    }
+                    el.style.opacity = '1';
+                }, 150);
+            });
+        }
+
+        // Add smooth opacity transition to translatable elements
+        translatableElements.forEach(el => {
+            el.style.transition = 'opacity 0.15s ease';
+        });
+
         // Menu Toggle
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinksContainer = document.getElementById('navLinks');
@@ -972,8 +1149,10 @@
             const icon = mobileToggle.querySelector('i');
             if (navLinksContainer.classList.contains('show')) {
                 icon.className = 'ph ph-x';
+                document.querySelector('.nav-actions-mobile').style.display = 'flex';
             } else {
                 icon.className = 'ph ph-list';
+                document.querySelector('.nav-actions-mobile').style.display = 'none';
             }
         });
 
@@ -987,20 +1166,15 @@
 
         // Sticky Navbar & ScrollSpy
         const navbar = document.getElementById('navbar');
-        const navBookBtn = document.getElementById('navBookBtn');
         const sections = document.querySelectorAll('section[id], header[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
+        const navLinksAttr = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', () => {
             // Navbar style
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
-                if (window.innerWidth > 768) {
-                    navBookBtn.style.display = 'inline-flex';
-                }
             } else {
                 navbar.classList.remove('scrolled');
-                navBookBtn.style.display = 'none';
             }
 
             // ScrollSpy
@@ -1012,7 +1186,7 @@
                 }
             });
 
-            navLinks.forEach(link => {
+            navLinksAttr.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {
                     link.classList.add('active');
@@ -1049,7 +1223,6 @@
 
         // Smooth follow animation
         function animateGlow() {
-            // Lerp formulation for smooth tracking
             glowX += (cursorX - glowX) * 0.05;
             glowY += (cursorY - glowY) * 0.05;
 
