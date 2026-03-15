@@ -1,1174 +1,2336 @@
 <!DOCTYPE html>
 <html lang="hu">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MODUS RECORDING | BUDAPEST</title>
-    <meta name="description"
-        content="Független zenekarok és filmesek hangmérnöki partnere Budapesten. Felvétel, keverés, mastering.">
-    <meta property="og:title" content="MODUS RECORDING">
-    <meta property="og:description" content="Felvétel, keverés, mastering Budapesten.">
-    <meta property="og:type" content="website">
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%232a8c44'>M</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <style>
-        :root {
-            /* V6: Forest green color system — deep blacks, green accents, off-white text */
-            --bg-dark: #0A0A0A;
-            --bg-section: #0f0f0f;
-            /* Slightly lighter for alternating sections */
-            --bg-panel: #111111;
-            --border-color: #1e1e1e;
-            --accent: #2a8c44;
-            --accent-glow: rgba(42, 140, 68, 0.5);
-            --accent-hover: #3dae5a;
-            --text-main: #E8E4DE;
-            /* Off-white — not blinding */
-            --text-sec: #888888;
-
-            --font-head: 'Syncopate', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --nav-height: 80px;
-            --section-padding: 110px;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background: var(--bg-dark);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--nav-height);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: inherit;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: var(--font-head);
-            text-transform: uppercase;
-            margin: 0;
-            line-height: 1.05;
-            letter-spacing: 0.04em;
-            color: var(--text-main);
-        }
-
-        p {
-            margin: 0 0 1.4rem 0;
-            color: var(--text-sec);
-            font-size: 1rem;
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-
-        .container {
-            width: 100%;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 4vw;
-        }
-
-        /* ---- BUTTONS ---- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 1rem 2rem;
-            font-family: var(--font-head);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            border: 1px solid var(--text-main);
-            background: transparent;
-            color: var(--text-main);
-            cursor: pointer;
-            transition: all 0.75s cubic-bezier(0.25, 1, 0.5, 1);
-            /* Slower, more deliberate */
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0%;
-            background: var(--text-main);
-            transition: height 0.75s cubic-bezier(0.25, 1, 0.5, 1);
-            /* Slower sweep */
-            z-index: -1;
-        }
-
-        .btn:hover {
-            color: var(--bg-dark);
-        }
-
-        .btn:hover::after {
-            height: 100%;
-        }
-
-        .btn-accent {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-        }
-
-        .btn-accent::after {
-            background: #fff;
-        }
-
-        .btn-accent:hover {
-            color: var(--bg-dark);
-        }
-
-        /* ---- SECTIONS ---- */
-        .section {
-            padding: var(--section-padding) 0;
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-            z-index: 2;
-            background: var(--bg-dark);
-        }
-
-        .section.alt-bg {
-            background: var(--bg-section);
-            /* Subtle alternating shade */
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            font-family: var(--font-head);
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-size: 0.78rem;
-            display: block;
-            margin-bottom: 1.2rem;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            font-weight: 700;
-            max-width: 900px;
-        }
-
-        /* ---- NAV ---- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            transition: background 0.4s ease, border-bottom 0.4s;
-            border-bottom: 1px solid transparent;
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.97);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            flex: 1;
-        }
-
-        .nav-logo img {
-            height: 38px;
-            filter: brightness(0) invert(1);
-            transition: opacity 0.3s;
-        }
-
-        .nav-logo:hover img {
-            opacity: 0.75;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            justify-content: center;
-        }
-
-        .nav-link {
-            font-family: var(--font-head);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            position: relative;
-            padding: 0.5rem 0;
-            color: var(--text-main);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: var(--accent);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-        .lang-toggle {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-family: var(--font-head);
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .lang-active {
-            color: var(--accent);
-        }
-
-        .lang-inactive {
-            color: var(--text-sec);
-            transition: color 0.3s;
-        }
-
-        .lang-inactive:hover {
-            color: var(--text-main);
-        }
-
-        .lang-sep {
-            color: #333;
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: var(--text-main);
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* ---- HERO ---- */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .hero-video-wrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .hero-video-wrap video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.65;
-            /* Visible but darkened enough for text readability */
-        }
-
-        /* Dark overlay for extra legibility */
-        .hero-video-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom,
-                    rgba(10, 10, 10, 0.55) 0%,
-                    rgba(10, 10, 10, 0.3) 40%,
-                    rgba(10, 10, 10, 0.7) 100%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            padding-top: 4rem;
-        }
-
-        .hero-eyebrow {
-            font-family: var(--font-head);
-            font-size: 0.82rem;
-            color: var(--accent);
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
-            font-weight: 700;
-            line-height: 1.0;
-            margin-bottom: 2rem;
-            max-width: 900px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
-
-        /* ---- PHILOSOPHY / QUOTE ---- */
-        .quote-section {
-            padding: 80px 0;
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-            z-index: 2;
-            background: var(--bg-section);
-        }
-
-        .quote-block {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .quote-text {
-            font-family: var(--font-head);
-            font-size: clamp(1rem, 2.2vw, 1.5rem);
-            font-weight: 400;
-            line-height: 1.6;
-            color: var(--text-main);
-            letter-spacing: 0.05em;
-            /* Matches Syncopate section-label style */
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            font-style: normal;
-            /* No italic */
-        }
-
-        .quote-author {
-            font-family: var(--font-head);
-            font-size: 0.78rem;
-            color: var(--accent);
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-        }
-
-        /* ---- SERVICES ---- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .service-card {
-            background: var(--bg-dark);
-            padding: 4vw;
-            display: flex;
-            flex-direction: column;
-            transition: background 0.4s;
-        }
-
-        .service-card:hover {
-            background: var(--bg-panel);
-        }
-
-        .service-icon {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 1.8rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1.2rem;
-        }
-
-        /* ---- ABOUT / STAFF ---- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4vw;
-            align-items: center;
-        }
-
-        .about-text p {
-            font-size: 1.05rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .staff-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .staff-member {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3/4;
-            overflow: hidden;
-            background: #111;
-        }
-
-        .staff-member img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s;
-            filter: grayscale(5%) contrast(1.05);
-        }
-
-        .staff-member:hover img {
-            transform: scale(1.04);
-            filter: contrast(1.1);
-        }
-
-        .staff-info {
-            position: absolute;
-            bottom: 18px;
-            left: 18px;
-            z-index: 2;
-        }
-
-        .staff-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
-
-        .staff-info span {
-            font-size: 0.75rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-        }
-
-        .staff-member::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 55%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        /* ---- RATES ---- */
-        .rates-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .rate-card {
-            background: var(--bg-dark);
-            padding: 4vw;
-            display: flex;
-            flex-direction: column;
-            transition: background 0.4s;
-        }
-
-        .rate-card:hover {
-            background: var(--bg-panel);
-        }
-
-        .rate-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .rate-price {
-            font-size: 1.1rem;
-            color: var(--text-sec);
-            margin-bottom: 2rem;
-        }
-
-        .rate-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2.5rem 0;
-            flex-grow: 1;
-        }
-
-        .rate-features li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.92rem;
-            color: #ccc;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .rate-features li i {
-            color: var(--accent);
-            font-size: 1rem;
-            margin-top: 3px;
-        }
-
-        /* ---- PORTFOLIO ---- */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .media-item iframe {
-            width: 100%;
-            height: 250px;
-            border: none;
-            background: #111;
-            display: block;
-        }
-
-        .spotify-container {
-            width: 100%;
-        }
-
-        .spotify-container iframe {
-            display: block;
-            border: none;
-        }
-
-        /* ---- CONTACT ---- */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4vw;
-        }
-
-        .contact-boxes {
-            display: grid;
-            gap: 1px;
-            background: var(--border-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .c-box {
-            background: var(--bg-dark);
-            padding: 2rem 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            transition: background 0.4s;
-            color: var(--text-main);
-        }
-
-        .c-box:hover {
-            background: var(--bg-panel);
-        }
-
-        .c-box i {
-            font-size: 2.2rem;
-            color: var(--accent);
-        }
-
-        .c-box-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        .c-box-content span {
-            color: var(--text-sec);
-            font-size: 0.95rem;
-        }
-
-        /* ---- FOOTER ---- */
-        footer {
-            border-top: 1px solid var(--border-color);
-            position: relative;
-            z-index: 2;
-            background: var(--bg-dark);
-        }
-
-        .footer-map {
-            height: 300px;
-            overflow: hidden;
-            filter: grayscale(100%) contrast(1.1) brightness(0.55);
-            margin-bottom: 0;
-        }
-
-        .footer-map iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        .footer-bottom {
-            padding: 2.5rem 0;
-            text-align: center;
-        }
-
-        .footer-bottom img {
-            height: 36px;
-            margin-bottom: 1.2rem;
-            filter: brightness(0) invert(1);
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .footer-bottom p {
-            font-size: 0.75rem;
-            color: #555;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-family: var(--font-head);
-        }
-
-        /* ---- ANIMATIONS ---- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 1024px) {
-
-            .services-grid,
-            .rates-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .staff-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .nav-actions {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: var(--nav-height);
-                left: 0;
-                width: 100%;
-                background: #000;
-                flex-direction: column;
-                gap: 0;
-                border-bottom: 1px solid var(--border-color);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.5s ease;
-                justify-content: flex-start;
-            }
-
-            .nav-links.show {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-
-            .nav-link {
-                display: block;
-                padding: 1.4rem 5%;
-                border-bottom: 1px solid #111;
-                font-size: 1.1rem;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            :root {
-                --section-padding: 70px;
-            }
-
-            .hero-title {
-                font-size: clamp(2rem, 8vw, 3.5rem);
-            }
-
-            .media-item iframe {
-                height: 220px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modus Recording — Felvétel, Keverés, Mastering | Budapest</title>
+  <meta name="description" content="Független zenekarok és filmesek hangmérnöki partnere Budapesten. Felvétel, keverés, mastering, mobil stúdió. Vitányi Dávid & Tomszi.">
+  <meta property="og:title" content="Modus Recording — Felvétel, Keverés, Mastering | Budapest">
+  <meta property="og:description" content="Független zenekarok és filmesek hangmérnöki partnere Budapesten.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Modus Recording",
+    "description": "Hangmérnöki stúdió Budapesten — felvétel, keverés, mastering",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Budapest",
+      "addressRegion": "VII. kerület",
+      "addressCountry": "HU"
+    }
+  }
+  </script>
+
+  <script>
+    // Force scroll to top before anything renders
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #060606;
+      --dark: #0C0E0C;
+      --dark2: #131513;
+      --dark3: #1A1C1A;
+      --forest: #0A0D0A;
+      --forest2: #0E110E;
+      --amber: #7A8A7A;
+      --amber2: #98A698;
+      --amber-glow: rgba(122, 138, 122, 0.08);
+      --amber-dim: #4A5A4A;
+      --off-white: #E0E2E0;
+      --cream: #B8BCB8;
+      --gray: #6A6E6A;
+      --gray-dim: #2A2E2A;
+      --red-amber: #2A3A2A;
+      --nav-height: 72px;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--amber-dim) var(--dark);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--amber-dim); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+
+    body {
+      background: var(--black);
+      color: var(--off-white);
+      font-family: 'Space Grotesk', 'Syne', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+
+    /* ===== FILM GRAIN ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* ===== PAGE LOADER ===== */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      background: #000000;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .page-loader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-logo {
+      width: 120px; height: 120px;
+      opacity: 0;
+      animation: loaderPulse 1.5s ease-in-out infinite, loaderFadeIn 0.5s ease forwards;
+    }
+    .loader-bar {
+      width: 120px; height: 2px;
+      background: var(--gray-dim);
+      border-radius: 1px;
+      overflow: hidden;
+      opacity: 0;
+      animation: loaderFadeIn 0.5s ease 0.2s forwards;
+    }
+    .loader-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--amber);
+      border-radius: 1px;
+      animation: loaderFill 1.8s var(--ease-out-expo) 0.3s forwards;
+    }
+    @keyframes loaderPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes loaderFadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes loaderFill {
+      to { width: 100%; }
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3 {
+      font-family: 'Rajdhani', sans-serif;
+      line-height: 1.15;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    h1 { font-size: clamp(2.8rem, 8vw, 6.5rem); }
+    h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    h3 { font-size: clamp(1.3rem, 2.5vw, 1.9rem); }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+    section { position: relative; overflow: clip; }
+
+    /* ===== REVEAL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1), transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ===== SPLIT TEXT REVEAL ===== */
+    .split-text .word {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+    }
+    .split-text .word-inner {
+      display: inline-block;
+      transform: translateY(110%);
+      transition: transform 0.7s var(--ease-out-expo);
+    }
+    .split-text.visible .word-inner {
+      transform: translateY(0);
+    }
+    .split-text .word:nth-child(2) .word-inner { transition-delay: 0.05s; }
+    .split-text .word:nth-child(3) .word-inner { transition-delay: 0.1s; }
+    .split-text .word:nth-child(4) .word-inner { transition-delay: 0.15s; }
+    .split-text .word:nth-child(5) .word-inner { transition-delay: 0.2s; }
+    .split-text .word:nth-child(6) .word-inner { transition-delay: 0.25s; }
+
+    /* ===== AMBER ACCENTS ===== */
+    .amber-rule {
+      width: 48px; height: 2px;
+      background: linear-gradient(90deg, var(--amber), transparent);
+      margin: 1.5rem 0;
+    }
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--amber);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.1rem 2.4rem;
+      background: transparent;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.7s ease;
+    }
+    .btn .btn-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+      z-index: -1;
+    }
+    .btn:hover { color: var(--black); }
+    .btn:hover .btn-bg { transform: scaleX(1); }
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.5s ease;
+    }
+    .btn:hover .btn-arrow { transform: translateX(4px); }
+
+    .btn-solid {
+      background: var(--amber);
+      color: var(--black);
+    }
+    .btn-solid .btn-bg { background: var(--amber2); }
+    .btn-solid:hover { color: var(--black); }
+
+    /* ===== MAGNETIC BUTTON ===== */
+    .magnetic { transition: transform 0.3s var(--ease-out-quart); }
+
+    /* ==============================
+       NAVIGATION
+    ============================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(5,8,7,0.9);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: 0 1px 0 rgba(122,138,122,0.1);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+    }
+    .nav-logo-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--off-white);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--amber);
+      transition: width 0.3s var(--ease-out-expo);
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black) !important;
+      background: var(--amber);
+      padding: 0.6rem 1.4rem;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--amber2); color: var(--black) !important; }
+
+    /* Mobile hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--off-white);
+      transition: all 0.3s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 4px);
+    }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Mobile menu */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5,8,7,0.97);
+      backdrop-filter: blur(30px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-mobile a:hover { color: var(--amber); }
+
+    /* ==============================
+       HERO
+    ============================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-height) + 2rem) 2rem 0;
+      position: relative;
+    }
+
+    /* Ambient background */
+    .hero-bg {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      filter: saturate(0.6) brightness(0.5);
+    }
+    .hero-bg-gradient {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(10,21,14,0.4) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(5,8,7,0.6) 0%, transparent 30%, transparent 70%, rgba(5,8,7,0.95) 100%);
+    }
+    .hero-bg-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(122,138,122,0.025) 1px, transparent 1px);
+      background-size: 100% 120px;
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent);
+    }
+
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+    }
+    .hero-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease-out-expo) 0.6s forwards;
+    }
+    #hero h1 {
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease-out-expo) 0.8s forwards;
+      margin-bottom: 2rem;
+    }
+    #hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+      position: relative;
+    }
+    #hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--amber);
+      opacity: 0.3;
+      transform: scaleX(0);
+      animation: lineReveal 0.8s var(--ease-out-expo) 1.6s forwards;
+    }
+    @keyframes lineReveal {
+      to { transform: scaleX(1); }
+    }
+
+    .hero-sub {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease-out-expo) 1s forwards;
+    }
+    .hero-cta {
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease-out-expo) 1.2s forwards;
+      margin-bottom: 5rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Audio Widget */
+    .audio-widget {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(122,138,122,0.15);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      max-width: 620px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease-out-expo) 1.4s forwards;
+      backdrop-filter: blur(10px);
+    }
+    .audio-widget-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .play-btn {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 0 0 rgba(122,138,122,0);
+    }
+    .play-btn:hover {
+      background: var(--amber2);
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(122,138,122,0.3);
+    }
+    .play-btn svg { fill: var(--black); }
+    .slider-wrap { flex: 1; }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      margin-bottom: 0.6rem;
+    }
+    .slider-labels span:last-child { color: var(--amber); }
+
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 3px;
+      background: linear-gradient(to right, var(--gray-dim) 0%, var(--gray-dim) 50%, var(--amber) 50%, var(--amber) 100%);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 2px solid var(--black);
+      box-shadow: 0 0 10px rgba(122,138,122,0.4);
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 20px rgba(122,138,122,0.6);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 2px solid var(--black);
+      cursor: pointer;
+    }
+    .audio-time {
+      font-size: 0.72rem;
+      color: var(--gray);
+      text-align: right;
+      margin-top: 0.4rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    .demo-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.35rem 0.9rem;
+      background: rgba(122,138,122,0.08);
+      border: 1px solid rgba(122,138,122,0.2);
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      animation: heroFadeIn 1s ease 2s forwards;
+    }
+    .scroll-mouse {
+      width: 22px; height: 34px;
+      border: 1.5px solid var(--amber-dim);
+      border-radius: 11px;
+      position: relative;
+    }
+    .scroll-mouse::after {
+      content: '';
+      width: 3px; height: 6px;
+      background: var(--amber);
+      border-radius: 2px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollDot 2s ease-in-out infinite;
+    }
+    @keyframes scrollDot {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      60% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+    }
+    .scroll-text {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+    }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ==============================
+       MARQUEE / REFS
+    ============================== */
+    #refs {
+      background: var(--dark);
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(122,138,122,0.08);
+      border-bottom: 1px solid rgba(122,138,122,0.08);
+      overflow: hidden;
+    }
+    .marquee {
+      display: flex;
+      gap: 4rem;
+      animation: marqueeScroll 25s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+    .marquee-item::after {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--amber);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ==============================
+       ABOUT
+    ============================== */
+    #about {
+      background: var(--forest);
+      padding: 10rem 0;
+      position: relative;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(ellipse at 0% 50%, rgba(122,138,122,0.06), transparent 70%);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 8rem;
+      align-items: stretch;
+    }
+    .about-image-wrap {
+      position: relative;
+      min-height: 400px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(122,138,122,0.1);
+    }
+    .about-image {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-text h2 { margin-bottom: 1.5rem; }
+    .about-lead {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--cream);
+      opacity: 0.7;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid rgba(122,138,122,0.3);
+    }
+    .about-text p {
+      color: var(--off-white);
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .team-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .team-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      transition: border-color 0.4s, transform 0.4s var(--ease-out-expo);
+    }
+    .team-card:hover {
+      border-color: rgba(122,138,122,0.25);
+      transform: translateX(8px);
+    }
+    .team-photo {
+      width: 130px;
+      flex-shrink: 0;
+      background: var(--dark2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .team-photo-placeholder {
+      width: 48px; height: 48px;
+      opacity: 0.15;
+      fill: var(--amber);
+    }
+    .team-info {
+      padding: 1.8rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .team-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      color: var(--amber);
+      margin-bottom: 0.3rem;
+    }
+    .team-role {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.8rem;
+    }
+    .team-bio {
+      font-size: 0.9rem;
+      color: var(--off-white);
+      opacity: 0.65;
+      line-height: 1.6;
+    }
+
+    /* ==============================
+       SERVICES
+    ============================== */
+    #services {
+      background: var(--black);
+      padding: 10rem 0;
+    }
+    #services .section-header {
+      margin-bottom: 5rem;
+      max-width: 600px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .service-card {
+      background: var(--dark);
+      padding: 3.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s;
+      border-radius: 0;
+    }
+    .service-card:hover { background: var(--dark2); }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 0%, rgba(122,138,122,0.06), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .service-card:hover::after { opacity: 1; }
+    .service-number {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 4rem;
+      color: var(--amber);
+      opacity: 0.08;
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      line-height: 1;
+    }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .service-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.7rem;
+      color: var(--off-white);
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .service-text {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .service-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: rgba(122,138,122,0.08);
+      border: 1px solid rgba(122,138,122,0.2);
+      border-radius: 100px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==============================
+       PORTFOLIO
+    ============================== */
+    #portfolio {
+      background: var(--forest2);
+      padding: 10rem 0;
+    }
+    #portfolio .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    #portfolio .section-header .section-label {
+      justify-content: center;
+    }
+    #portfolio .section-header .section-label::before { display: none; }
+    #portfolio .section-header h2 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-style: normal;
+    }
+
+    .portfolio-samples {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 5rem;
+    }
+    .sample-row {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .sample-row:hover {
+      border-color: rgba(122,138,122,0.2);
+      background: rgba(122,138,122,0.03);
+    }
+    .sample-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    .sample-artist {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.6rem;
+    }
+    .sample-genre {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      background: rgba(122,138,122,0.08);
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+    }
+    .sample-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+    .sample-labels span:last-child { color: var(--amber); }
+
+    .embed-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .embed-placeholder {
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(255,255,255,0.08);
+      border-radius: 8px;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      color: var(--gray-dim);
+      transition: border-color 0.3s;
+    }
+    .embed-placeholder:hover { border-color: rgba(122,138,122,0.2); }
+    .embed-placeholder svg { width: 40px; height: 40px; opacity: 0.3; }
+
+    /* Audio Players */
+    .audio-players {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .audio-track {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(122,138,122,0.12);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+    .audio-track:hover {
+      background: rgba(122,138,122,0.06);
+      border-color: rgba(122,138,122,0.25);
+    }
+    .audio-play {
+      width: 44px; height: 44px;
+      min-width: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(122,138,122,0.3);
+      background: transparent;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+    .audio-play:hover {
+      background: var(--amber);
+      color: var(--black);
+      border-color: var(--amber);
+      transform: scale(1.08);
+    }
+    .audio-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .audio-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .audio-genre {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .audio-progress {
+      flex: 0 0 120px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .audio-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--amber);
+      border-radius: 2px;
+      transition: width 0.1s linear;
+    }
+    .audio-time {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      color: var(--gray);
+      min-width: 36px;
+      text-align: right;
+    }
+    .embed-placeholder span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    /* ==============================
+       PROCESS
+    ============================== */
+    #process {
+      background: var(--black);
+      padding: 10rem 0;
+      overflow: visible;
+    }
+    .process-layout {
+      display: flex;
+      gap: 6rem;
+      align-items: flex-start;
+    }
+    .process-left {
+      flex: 0 0 380px;
+      position: sticky;
+      top: 120px;
+    }
+    .process-right {
+      flex: 1;
+    }
+    .process-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 31px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gray-dim) 10%, var(--gray-dim) 90%, transparent);
+    }
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      text-align: left;
+    }
+    .step-number {
+      width: 64px; height: 64px;
+      min-width: 64px;
+      border-radius: 50%;
+      background: var(--dark2);
+      border: 1px solid var(--gray-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gray);
+      transition: all 0.4s var(--ease-out-expo);
+      position: relative;
+      z-index: 1;
+    }
+    .process-step:hover .step-number {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--black);
+      box-shadow: 0 0 30px rgba(122,138,122,0.3);
+      transform: scale(1.1);
+    }
+    .step-content {
+      flex: 1;
+    }
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+    .step-desc {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ==============================
+       PRICING
+    ============================== */
+    #pricing {
+      background: var(--forest);
+      padding: 10rem 0;
+    }
+    #pricing .section-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    #pricing .section-header .section-label {
+      justify-content: center;
+    }
+    #pricing .section-header .section-label::before { display: none; }
+    .pricing-sub {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 5rem;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .pricing-card {
+      background: var(--dark);
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: background 0.4s, transform 0.4s var(--ease-out-expo);
+      border-radius: 0;
+    }
+    .pricing-card:hover {
+      background: var(--dark3);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      background: linear-gradient(180deg, rgba(122,138,122,0.08), var(--dark));
+      border: 1px solid rgba(122,138,122,0.3);
+      margin: -1px;
+      z-index: 1;
+      border-radius: 4px;
+    }
+    .pricing-card.featured:hover {
+      transform: translateY(-8px);
+    }
+    .featured-badge {
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--amber);
+      color: var(--black);
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.35rem 1.2rem;
+      border-radius: 0 0 6px 6px;
+    }
+    .plan-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+    }
+    .plan-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.8rem;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .plan-price-note {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    .plan-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 2rem;
+    }
+    .plan-features {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 2rem;
+    }
+    .plan-features li {
+      font-size: 0.88rem;
+      color: var(--cream);
+      opacity: 0.75;
+      padding: 0.6rem 0;
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .plan-features li:last-child { border-bottom: none; }
+    .plan-features li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      opacity: 0.5;
+      flex-shrink: 0;
+      margin-top: 0.5rem;
+    }
+    .plan-ideal {
+      font-size: 0.82rem;
+      color: var(--amber-dim);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .plan-cta {
+      display: block;
+      text-align: center;
+      padding: 1rem;
+      border: 1px solid rgba(122,138,122,0.3);
+      color: var(--amber);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.4s;
+      border-radius: 4px;
+    }
+    .plan-cta:hover {
+      background: var(--amber);
+      color: var(--black);
+    }
+    .pricing-card.featured .plan-cta {
+      background: var(--amber);
+      color: var(--black);
+    }
+    .pricing-card.featured .plan-cta:hover {
+      background: var(--amber2);
+    }
+
+    /* ==============================
+       TESTIMONIALS
+    ============================== */
+    #testimonials {
+      background: var(--dark);
+      padding: 10rem 0;
+      position: relative;
+    }
+    #testimonials::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(122,138,122,0.04), transparent 60%);
+    }
+    #testimonials .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+    #testimonials .section-header .section-label {
+      justify-content: center;
+    }
+    #testimonials .section-header .section-label::before { display: none; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      position: relative;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.02);
+      padding: 3rem;
+      position: relative;
+      border-radius: 0;
+      transition: background 0.4s;
+    }
+    .testimonial-card:hover {
+      background: rgba(255,255,255,0.04);
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-family: Georgia, serif;
+      font-size: 6rem;
+      color: var(--amber);
+      opacity: 0.08;
+      line-height: 1;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-stars svg {
+      width: 14px; height: 14px;
+      fill: var(--amber);
+    }
+    .testimonial-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--off-white);
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .testimonial-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--dark2);
+      border: 1px solid rgba(122,138,122,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--off-white);
+    }
+    .testimonial-context {
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+    }
+
+    /* ==============================
+       LEAD MAGNET
+    ============================== */
+    #lead {
+      background: var(--forest);
+      padding: 8rem 0;
+      position: relative;
+    }
+    #lead::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(122,138,122,0.06), transparent 60%);
+    }
+    .lead-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    .lead-inner .section-label {
+      justify-content: center;
+    }
+    .lead-inner .section-label::before { display: none; }
+    .lead-inner h2 { margin-bottom: 1rem; }
+    .lead-inner > p {
+      color: var(--gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .lead-form {
+      display: flex;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto 1rem;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .lead-input {
+      flex: 1;
+      padding: 1.1rem 1.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-right: none;
+      color: var(--off-white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .lead-input::placeholder { color: var(--gray-dim); }
+    .lead-input:focus { border-color: rgba(122,138,122,0.4); }
+    .lead-btn {
+      padding: 1.1rem 1.8rem;
+      background: var(--amber);
+      border: none;
+      color: var(--black);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .lead-btn:hover { background: var(--amber2); }
+    .lead-note {
+      font-size: 0.72rem;
+      color: var(--gray-dim);
+    }
+
+    /* ==============================
+       CONTACT
+    ============================== */
+    #contact {
+      background: var(--black);
+      padding: 10rem 0;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: start;
+    }
+    .contact-left h2 { margin-bottom: 1.5rem; }
+    .contact-left > p {
+      color: var(--gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      text-decoration: none;
+      padding: 1.3rem 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px;
+      transition: all 0.4s;
+    }
+    .contact-method:hover {
+      border-color: rgba(122,138,122,0.25);
+      background: rgba(122,138,122,0.04);
+      transform: translateX(4px);
+    }
+    .contact-method-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .contact-method-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.2rem;
+    }
+    .contact-method-value {
+      font-size: 0.95rem;
+      color: var(--off-white);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-group label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .form-input, .form-select, .form-textarea {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: var(--off-white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.92rem;
+      padding: 1rem 1.2rem;
+      outline: none;
+      border-radius: 4px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--gray-dim); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(122,138,122,0.4);
+      box-shadow: 0 0 0 3px rgba(122,138,122,0.06);
+    }
+    .form-select {
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-color: rgba(255,255,255,0.03);
+    }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-submit {
+      padding: 1.1rem 2.5rem;
+      background: var(--amber);
+      border: none;
+      color: var(--black);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      align-self: flex-start;
+      border-radius: 4px;
+    }
+    .form-submit:hover {
+      background: var(--amber2);
+      transform: translateY(-2px);
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(122,138,122,0.1);
+      padding: 4rem 0 3rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .footer-logo svg { width: 28px; height: 28px; }
+    .footer-logo span {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--gray-dim);
+      line-height: 1.8;
+    }
+    .footer-tagline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-style: italic;
+      color: var(--amber);
+      opacity: 0.6;
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--amber); }
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
+    @media (max-width: 1024px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { gap: 2.5rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .sample-row { grid-template-columns: 1fr; }
+      .embed-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 5rem; }
+      .process-layout { flex-direction: column; gap: 2rem; }
+      .process-left { position: static; flex: none; }
+      .embed-grid { grid-template-columns: 1fr !important; }
+      .lead-form {
+        flex-direction: column;
+        border-radius: 0;
+      }
+      .lead-input { border-right: 1px solid rgba(255,255,255,0.08); }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .hero-cta { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .process-grid { gap: 2rem; }
+      .audio-controls { flex-direction: column; align-items: stretch; }
+      .play-btn { align-self: center; }
+      .audio-widget { padding: 1.5rem 1.5rem; }
+      .contact-grid { gap: 3rem !important; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <div class="nav-logo">
-                <a href="#hero">
-                    <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/LOGO.png"
-                        alt="Modus Recording">
-                </a>
-            </div>
+  <!-- PAGE LOADER -->
+  <div class="page-loader" id="pageLoader">
+    <img class="loader-logo" src="assets/images/logo-circle.png" alt="Modus Recording" style="width:120px;height:120px;object-fit:contain;">
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#services" class="nav-link" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</a>
-                </li>
-                <li><a href="#about" class="nav-link" data-hu="Rólunk" data-en="About">Rólunk</a></li>
-                <li><a href="#rates" class="nav-link" data-hu="Árak" data-en="Rates">Árak</a></li>
-                <li><a href="#portfolio" class="nav-link" data-hu="Portfólió" data-en="Portfolio">Portfólió</a></li>
 
-                <!-- Mobile extras -->
-                <li class="nav-actions-mobile"
-                    style="display:none; padding: 1.5rem 5%; gap: 1rem; flex-direction: column;">
-                    <div class="lang-toggle">
-                        <span class="lang-btn lang-active" onclick="switchLang('hu')">HU</span>
-                        <span class="lang-sep">|</span>
-                        <span class="lang-btn lang-inactive" onclick="switchLang('en')">EN</span>
-                    </div>
-                </li>
-            </ul>
+  <!-- NAVIGATION -->
+  <nav class="nav" id="mainNav">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-text">Modus Recording</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">Rólunk</a></li>
+      <li><a href="#services">Szolgáltatások</a></li>
+      <li><a href="#portfolio">Munkáink</a></li>
+      <li><a href="#pricing">Árak</a></li>
+      <li><a href="#contact" class="nav-cta">Kapcsolat</a></li>
+    </ul>
+    <div class="nav-hamburger" id="navHamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
 
-            <div class="nav-actions">
-                <div class="lang-toggle">
-                    <span class="lang-btn lang-active" onclick="switchLang('hu')">HU</span>
-                    <span class="lang-sep">|</span>
-                    <span class="lang-btn lang-inactive" onclick="switchLang('en')">EN</span>
-                </div>
-            </div>
+  <!-- MOBILE MENU -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about">Rólunk</a>
+    <a href="#services">Szolgáltatások</a>
+    <a href="#portfolio">Munkáink</a>
+    <a href="#pricing">Árak</a>
+    <a href="#contact">Kapcsolat</a>
+  </div>
 
-            <button class="mobile-toggle" id="mobileToggle"><i class="ph ph-list"></i></button>
-        </div>
-    </nav>
-
-    <!-- HERO — Video background, heavily darkened -->
-    <header class="hero" id="hero">
-        <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline preload="auto">
-                <source
-                    src="vita%CC%81nyi%20-%20anyagok/vide%C3%B3k/u8953316241_Fixed_tripod_shot_absolutely_stationary_frame_ult_9416ec19-003e-4952-ad6b-05bb7feeb0ea_0.mp4"
-                    type="video/mp4">
-            </video>
-        </div>
-
-        <div class="container hero-content reveal">
-            <span class="hero-eyebrow" data-hu="Felvétel · Keverés · Mastering"
-                data-en="Recording · Mixing · Mastering">Felvétel · Keverés · Mastering</span>
-            <h1 class="hero-title" data-hu="Üdvözlünk a Modus Recordingban." data-en="Welcome to Modus Recording.">
-                Üdvözlünk a Modus Recordingban.</h1>
-            <div class="hero-actions">
-                <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                    class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book a Session">Időpontfoglalás</a>
-                <a href="#portfolio" class="btn" data-hu="Munkáink" data-en="Our Work">Munkáink</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- PHILOSOPHY / QUOTE -->
-    <div class="quote-section">
-        <div class="container">
-            <div class="quote-block reveal">
-                <p class="quote-text">&ldquo;A felszerelés csak eszköz. Az ízlés, a bizalom és az odafigyelés az, ami
-                    egy dalt naggyá tesz.&rdquo;</p>
-                <span class="quote-author">Modus Recording</span>
-            </div>
-        </div>
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="hero-bg">
+      <video class="hero-video-bg" autoplay muted loop playsinline>
+        <source src="assets/hero-video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-bg-gradient"></div>
+      <div class="hero-bg-lines"></div>
     </div>
 
-    <!-- SERVICES -->
-    <section class="section alt-bg" id="services">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label" data-hu="Mikért válassz minket" data-en="What We Do">Mikért válassz
-                    minket</span>
-                <h2 class="section-title" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</h2>
-            </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Modus Recording &mdash; Budapest</div>
+      <h1>Halld meg a <em>különbséget</em></h1>
+      <p class="hero-sub">Felvétel &nbsp;&middot;&nbsp; Keverés &nbsp;&middot;&nbsp; Mastering</p>
+      <div class="hero-cta">
+        <a href="#portfolio" class="btn btn-solid magnetic">
+          <span class="btn-bg"></span>
+          Munkáink
+          <span class="btn-arrow">&darr;</span>
+        </a>
+        <a href="https://cal.com/attila-nagy-8uefco/30min?overlayCalendar=true" target="_blank" rel="noopener" class="btn magnetic">
+          <span class="btn-bg"></span>
+          Időpontfoglalás
+          <span class="btn-arrow">&rarr;</span>
+        </a>
+      </div>
 
-            <div class="services-grid reveal">
-                <div class="service-card">
-                    <i class="ph-light ph-microphone-stage service-icon"></i>
-                    <h3 data-hu="Felvétel" data-en="Recording">Felvétel</h3>
-                    <p data-hu="Dolgozz velünk stúdiónkban vagy a te helyszíneden. Mobil felszereléssel kivitelezzük a lehető legjobb hangzást."
-                        data-en="Work with us in the studio or on location. We'll get the best sound out of your material.">
-                        Dolgozz velünk stúdiónkban vagy a te helyszíneden. Mobil felszereléssel kivitelezzük a lehető
-                        legjobb hangzást.</p>
-                </div>
+    </div>
 
-                <div class="service-card">
-                    <i class="ph-light ph-sliders service-icon"></i>
-                    <h3 data-hu="Keverés" data-en="Mixing">Keverés</h3>
-                    <p data-hu="A jó keverés nélkül nincs jó hangzás. Találjuk meg a zenéd egyedi karakterét — nincsenek sablonok."
-                        data-en="Without a great mix, there's no great sound. We'll find your unique character without templates.">
-                        A jó keverés nélkül nincs jó hangzás. Találjuk meg a zenéd egyedi karakterét — nincsenek
-                        sablonok.</p>
-                </div>
+  </section>
 
-                <div class="service-card">
-                    <i class="ph-light ph-vinyl-record service-icon"></i>
-                    <h3 data-hu="Mastering" data-en="Mastering">Mastering</h3>
-                    <p data-hu="Az utolsó lépcső. Professzionális master, ami minden eszközön és felületen hibátlanul szól."
-                        data-en="The final frontier. A professional master that translates flawlessly across all playback systems.">
-                        Az utolsó lépcső. Professzionális master, ami minden eszközön és felületen hibátlanul szól.</p>
-                </div>
-            </div>
+
+  <!-- ============ BEMUTATKOZÁS ============ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label reveal">Kik vagyunk</div>
+          <h2 class="reveal reveal-delay-1">Nem csak gombokat tekerünk</h2>
+          <div class="amber-rule reveal reveal-delay-2"></div>
+          <div class="about-lead reveal reveal-delay-2">
+            &ldquo;A felszerelés csak eszköz. Az ízlés, a bizalom és az odafigyelés az, ami egy dalt naggyá tesz.&rdquo;
+          </div>
+          <p class="reveal reveal-delay-3">A Modus Recording egy budapesti stúdió, ahol a zene áll a középpontban. Akár egy nyers, élő hangzást keresel, akár egy modern, csiszolt produkciót &mdash; nálunk megtalálod. Dolgozunk zenekarokkal, szólóművészekkel, podcastekkel és filmes projektekkel egyaránt. A felvételtől a masteringig mindent egy helyen intézünk, és ha kell, mobil stúdióval hozzád megyünk.</p>
         </div>
-    </section>
-
-    <!-- ABOUT & TEAM -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label" data-hu="A Csapat" data-en="The Team">A Csapat</span>
-                <h2 class="section-title" data-hu="Rólunk" data-en="About Us">Rólunk</h2>
-            </div>
-
-            <div class="about-grid reveal">
-                <div class="about-text">
-                    <p data-hu="Üdvözlünk a Modus Recording-ban. Megközelítésünk szerint a stúdió egyszerre lehet otthon és professzionális tér. Mindent vállalunk — a teljes produkciótól a remote keverésig és masteringig."
-                        data-en="Welcome to Modus Recording. We believe a studio can be both a home and a professional space. We do everything from full productions to remote mixing and mastering.">
-                        Üdvözlünk a Modus Recording-ban. Megközelítésünk szerint a stúdió egyszerre lehet otthon és
-                        professzionális tér. Mindent vállalunk — a teljes produkciótól a remote keverésig és
-                        masteringig.</p>
-                    <p data-hu="Ügyfeleink között rock, punk, metal és filmes produkciókat egyaránt vállalunk. Hatásunk a hazai zenei színtéren kiemelkedő."
-                        data-en="Our clients span rock, punk, metal and film productions. Our impact on the local music scene is significant.">
-                        Ügyfeleink között rock, punk, metal és filmes produkciókat egyaránt vállalunk. Hatásunk a hazai
-                        zenei színtéren kiemelkedő.</p>
-                </div>
-
-                <div class="staff-grid">
-                    <div class="staff-member">
-                        <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/da%CC%81vid.jpg"
-                            alt="Vitányi Dávid" loading="lazy">
-                        <div class="staff-info">
-                            <h3>Vitányi Dávid</h3>
-                            <span data-hu="Producer · Kreativitás" data-en="Producer · Creativity">Producer ·
-                                Kreativitás</span>
-                        </div>
-                    </div>
-                    <div class="staff-member">
-                        <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/mark-golovko-521806lr.jpg"
-                            alt="Tomszi" loading="lazy">
-                        <div class="staff-info">
-                            <h3>Tomszi</h3>
-                            <span data-hu="Mix · Mastering" data-en="Mix · Mastering">Mix · Mastering</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="reveal about-image-wrap">
+          <img src="assets/images/a-varazslo.jpg" alt="Vitányi Dávid és Tomszi a stúdióban" class="about-image">
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- RATES / PRICING -->
-    <section class="section alt-bg" id="rates">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label" data-hu="Árak és csomagok" data-en="Packages">Árak és csomagok</span>
-                <h2 class="section-title" data-hu="Árak & Csomagok" data-en="Rates & Packages">Árak & Csomagok</h2>
-            </div>
-
-            <div class="rates-grid reveal">
-                <!-- Card 1 -->
-                <div class="rate-card">
-                    <h3>Mix & Master</h3>
-                    <div class="rate-price" data-hu="~50–60 000 Ft / dal" data-en="~50–60k HUF / song">~50–60 000 Ft /
-                        dal</div>
-                    <ul class="rate-features">
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Otthoni / D.I.Y. felvételedből"
-                                data-en="From your home / D.I.Y. tracks">Otthoni / D.I.Y. felvételedből</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Nyitott soksávos utómunka"
-                                data-en="Multi-track mixing">Nyitott soksávos utómunka</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Vokálintonáció javítás"
-                                data-en="Pitch & timing correction">Vokálintonáció javítás</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="3 mix + 2 master revízió"
-                                data-en="3 mix + 2 master revisions">3 mix + 2 master revízió</span></li>
-                    </ul>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="rate-card">
-                    <h3 data-hu="Teljes Produkció" data-en="Full Production">Teljes Produkció</h3>
-                    <div class="rate-price" data-hu="~120–150 000 Ft / dal" data-en="~120–150k HUF / song">~120–150 000
-                        Ft / dal</div>
-                    <ul class="rate-features">
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Pre-production konzultáció"
-                                data-en="Pre-production consultation">Pre-production konzultáció</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Felvétel mobil stúdióval"
-                                data-en="Recording with mobile studio">Felvétel mobil stúdióval</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Hangszerelési tanácsok"
-                                data-en="Arrangement advice">Hangszerelési tanácsok</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Mix & Prémium Mastering"
-                                data-en="Mix & Premium Mastering">Mix & Prémium Mastering</span></li>
-                    </ul>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn btn-accent" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="rate-card">
-                    <h3 data-hu="Film & Reklám" data-en="Film & Ads">Film & Reklám</h3>
-                    <div class="rate-price" data-hu="Egyedi ajánlat" data-en="Custom quote">Egyedi ajánlat</div>
-                    <ul class="rate-features">
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Dialógus tisztítás"
-                                data-en="Dialogue editing">Dialógus tisztítás</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Sound design & Foley"
-                                data-en="Sound design & Foley">Sound design & Foley</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Web / TV standard (R128)"
-                                data-en="Web / TV standard (R128)">Web / TV standard (R128)</span></li>
-                        <li><i class="ph-bold ph-check"></i> <span data-hu="Dolby Atmos / 360° igény esetén"
-                                data-en="Dolby Atmos / 360° if needed">Dolby Atmos / 360° igény esetén</span></li>
-                    </ul>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn" data-hu="Időpontfoglalás" data-en="Book">Időpontfoglalás</a>
-                </div>
-            </div>
+  <!-- ============ SZOLGÁLTATÁSOK ============ -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Amit csinálunk</div>
+        <h2 class="reveal reveal-delay-1">Három terület.<br>Egy cél.</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="service-number">01</span>
+          <div class="service-title">Felvétel</div>
+          <p class="service-text">Kimegyünk hozzátok, vagy gyertek hozzánk. Mobil stúdiónkkal bárhol felveszünk &mdash; próbateremben, templomban, nappaliban. A felvétel minősége dönti el a végeredményt.</p>
+          <span class="service-badge">Mobil stúdió</span>
         </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section class="section" id="portfolio">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label" data-hu="Referenciák" data-en="Our Work">Referenciák</span>
-                <h2 class="section-title" data-hu="Portfólió" data-en="Portfolio">Portfólió</h2>
-            </div>
-
-            <!-- 3 videos in a row -->
-            <div class="media-grid reveal">
-                <div class="media-item">
-                    <iframe src="https://www.youtube.com/embed/H-eeDWnmgLo" title="YouTube" allowfullscreen></iframe>
-                </div>
-                <div class="media-item">
-                    <iframe src="https://www.youtube.com/embed/iC4SxvT8v4o" title="YouTube" allowfullscreen></iframe>
-                </div>
-                <div class="media-item">
-                    <iframe src="https://www.youtube.com/embed/FTeQoL50voU" title="YouTube" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <!-- Spotify full width -->
-            <div class="spotify-container reveal">
-                <iframe style="border-radius:0"
-                    src="https://open.spotify.com/embed/playlist/37i9dQZF1E4DWeqP3A3g8E?utm_source=generator&theme=0"
-                    width="100%" height="352" frameBorder="0" allowfullscreen
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"></iframe>
-            </div>
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-number">02</span>
+          <div class="service-title">Keverés & Mastering</div>
+          <p class="service-text">Minden stílus: rock, punk, hip-hop, post-punk, metal, akusztikus. Nem template-ből dolgozunk &mdash; minden szám egyedi figyelmet kap. 3 mix + 2 master revízió benne van.</p>
+          <span class="service-badge">Személyre szabott hangzás</span>
         </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section alt-bg" id="contact" style="border-bottom:none;">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</span>
-                <h2 class="section-title" data-hu="Vegyél fel velünk a kapcsolatot!" data-en="Get in touch with us!">
-                    Vegyél fel velünk a kapcsolatot!</h2>
-            </div>
-
-            <div class="contact-grid reveal">
-                <div class="about-text">
-                    <p data-hu="Küldj árajánlatkérést, kérdezz rá az aktuális naptárra, vagy foglald le az időpontodat online — minden részletet megbeszélünk."
-                        data-en="Send a quote request, ask about our schedule, or book your session online — we'll go through every detail.">
-                        Küldj árajánlatkérést, kérdezz rá az aktuális naptárra, vagy foglald le az időpontodat online —
-                        minden részletet megbeszélünk.</p>
-                    <a href="https://www.cal.eu/attila-nagy-92d0ue/15min?overlayCalendar=true" target="_blank"
-                        class="btn btn-accent" style="margin-bottom:2rem;" data-hu="Időpontfoglalás"
-                        data-en="Book a Session">Időpontfoglalás</a>
-                </div>
-
-                <div class="contact-boxes">
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=david@modusrecording.hu&su=Stúdió%20érdeklődés"
-                        target="_blank" class="c-box">
-                        <i class="ph-light ph-envelope-simple"></i>
-                        <div class="c-box-content">
-                            <h4>Email</h4>
-                            <span>david@modusrecording.hu</span>
-                        </div>
-                    </a>
-                    <a href="https://m.facebook.com/modus.recording" target="_blank" class="c-box">
-                        <i class="ph-light ph-messenger-logo"></i>
-                        <div class="c-box-content">
-                            <h4>Messenger</h4>
-                            <span data-hu="Írj ránk Facebookon" data-en="Message us on Facebook">Írj ránk
-                                Facebookon</span>
-                        </div>
-                    </a>
-                    <a href="https://www.instagram.com/modus.recording/" target="_blank" class="c-box">
-                        <i class="ph-light ph-instagram-logo"></i>
-                        <div class="c-box-content">
-                            <h4>Instagram</h4>
-                            <span>@modus.recording</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-number">03</span>
+          <div class="service-title">Film & Reklám</div>
+          <p class="service-text">Dialógus-összevágás, hangeffektek, sound design, teljes utómunka. Reklámfilmek, kisfilmek, YouTube-produkciók.</p>
+          <span class="service-badge">Teljes hangutómunka</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container" style="padding-top: 0; padding-bottom: 0;">
-            <div class="footer-map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86280.99958379058!2d18.966953335028485!3d47.48123010534951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741c334d1d4cfc9%3A0x400c4290c1e1160!2sBudapest!5e0!3m2!1shu!2shu!4v1707920158866!5m2!1shu!2shu"
-                    width="100%" height="300" style="border:0;display:block;" allowfullscreen loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!-- ============ PORTFOLIÓ ============ -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">A munkáink</div>
+        <h2>Hallgasd meg</h2>
+        <p style="color: var(--gray); margin-top: 1.2rem; font-size: 1rem;">Szavak helyett hangok. Ítéld meg magad.</p>
+      </div>
+
+      <!-- Spotify portfólió -->
+      <div class="reveal" style="margin-bottom:4rem;">
+        <iframe style="border-radius:12px;width:100%;height:380px;border:0;" src="https://open.spotify.com/embed/playlist/3ntSJGbtXUoypACiY0vvhi?utm_source=generator&theme=0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+
+      <div class="embed-grid reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+        <div class="embed-item" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+          <iframe src="https://www.youtube.com/embed/H-eeDWnmgLo" title="YouTube" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+        </div>
+        <div class="embed-item" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+          <iframe src="https://www.youtube.com/embed/iC4SxvT8v4o" title="YouTube" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+        </div>
+        <div class="embed-item" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+          <iframe src="https://www.youtube.com/embed/FTeQoL50voU" title="YouTube" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+        </div>
+      </div>
+
+      <!-- Állandó partner -->
+      <div class="reveal" style="text-align:center;margin-top:1.2rem;padding-top:1rem;">
+        <span style="font-size:0.75rem;color:var(--gray);letter-spacing:0.08em;">Állandó videós partnerünk &mdash; Reindeer Cinema</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOLYAMAT ============ -->
+  <section id="process">
+    <div class="container">
+      <div class="process-layout">
+        <div class="process-left">
+          <div class="section-label reveal">A folyamat</div>
+          <h2 class="reveal reveal-delay-1">Közös munka<br>lépései</h2>
+        </div>
+        <div class="process-right">
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <div class="step-title">Ismerkedés</div>
+            <div class="step-desc">Összeülünk, megbeszéljük a zenédet, a céljaidat. Ez ingyenes.</div>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <div class="step-title">Demo</div>
+            <div class="step-desc">Meghallgatjuk az anyagot, tanácsot adunk, meghatározzuk az irányt.</div>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <div class="step-title">Felvétel</div>
+            <div class="step-desc">Stúdióban nálunk vagy mobil stúdióval nálatok.</div>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <div class="step-title">Keverés</div>
+            <div class="step-desc">Küldjük a mix-verziókat. Max. 3 kör finomítás.</div>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-4">
+          <div class="step-number">05</div>
+          <div class="step-content">
+            <div class="step-title">Mastering</div>
+            <div class="step-desc">A végső hangkép csiszolása. 2 master revízió benne van.</div>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-5">
+          <div class="step-number">06</div>
+          <div class="step-content">
+            <div class="step-title">Kész!</div>
+            <div class="step-desc">Megkapod a kész fájlokat. WAV + MP3, streamingre és kiadásra.</div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ÁRAK ============ -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Csomagok</div>
+        <h2>Válaszd azt, ami illik hozzád</h2>
+      </div>
+      <p class="pricing-sub reveal">Nem tudod melyiket? Írj nekünk &mdash; segítünk eldönteni.</p>
+      <div class="pricing-grid reveal">
+        <div class="pricing-card">
+          <div class="plan-name">Online Mix & Master</div>
+          <div class="plan-price">49 000</div>
+          <div class="plan-price-note">Ft / szám</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Keverés + mastering</li>
+            <li>2 mix revízió</li>
+            <li>1 master revízió</li>
+            <li>5&ndash;7 munkanap átfutás</li>
+            <li>WAV + MP3 letöltés</li>
+          </ul>
+          <div class="plan-ideal">Ideális: Van kész felvételed, csak utómunka kell</div>
+          <a href="#contact" class="plan-cta">Kérd az ajánlatot</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="plan-name">Mix & Master Pro</div>
+          <div class="plan-price">79 000</div>
+          <div class="plan-price-note">Ft / szám</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Keverés + mastering</li>
+            <li>3 mix revízió</li>
+            <li>2 master revízió</li>
+            <li>1 online konzultáció</li>
+            <li>7&ndash;10 munkanap átfutás</li>
+            <li>WAV + MP3 letöltés</li>
+          </ul>
+          <div class="plan-ideal">Ideális: Minőségi utómunka + személyes figyelem</div>
+          <a href="#contact" class="plan-cta">Kérd az ajánlatot</a>
+        </div>
+        <div class="pricing-card">
+          <div class="plan-name">Teljes Produkció</div>
+          <div class="plan-price">149 000</div>
+          <div class="plan-price-note">Ft / szám</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Felvétel + keverés + mastering</li>
+            <li>Pre-production konzultáció</li>
+            <li>3 mix + 2 master revízió</li>
+            <li>Időpont egyeztetés szerint</li>
+            <li>WAV + MP3 letöltés</li>
+          </ul>
+          <div class="plan-ideal">Ideális: Nulláról kezdesz, mindent mi csinálunk</div>
+          <a href="#contact" class="plan-cta">Kérd az ajánlatot</a>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:2.5rem; color:var(--gray); font-size:0.85rem;" class="reveal">
+        Minden csomagnál letöltési linkkel kapod az anyagot. Nincs rejtett költség.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ VÉLEMÉNYEK ============ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Rólunk mondták</div>
+        <h2>Akik már hallottak minket</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+          </div>
+          <div class="testimonial-text">
+            &ldquo;Dávid az első, akinél otthon éreztük magunkat a stúdióban. Nem csak felvett &mdash; valóban odafigyelt arra, amit el akartunk mondani.&rdquo;
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">Z</div>
+            <div>
+              <div class="testimonial-name">[Zenekar neve]</div>
+              <div class="testimonial-context">Rock / Punk &mdash; Budapest</div>
             </div>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <img src="vita%CC%81nyi%20-%20anyagok/drive-download-20260222T151139Z-1-001/LOGO.png" alt="Modus Logo">
-            <p>&copy; 2026 MODUS RECORDING.</p>
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+          </div>
+          <div class="testimonial-text">
+            &ldquo;A keverés után nem hittük el, hogy ugyanaz az anyag. Más szintre emelte az egész lemezt. Következő albumhoz megint csak hozzájuk visszük.&rdquo;
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">[Zenekar neve]</div>
+              <div class="testimonial-context">Metal &mdash; Magyarország</div>
+            </div>
+          </div>
         </div>
-    </footer>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.47 5.01L18 6.93l-4 3.9.94 5.52L10 13.47l-4.94 2.88L6 10.83l-4-3.9 5.53-.92z"/></svg>
+          </div>
+          <div class="testimonial-text">
+            &ldquo;Hangutómunka profi volt és gyors. A reklámfilm határideje szoros volt &mdash; tartották. Következő projektünkhöz is őket kérjük.&rdquo;
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">R</div>
+            <div>
+              <div class="testimonial-name">[Rendező / Producer neve]</div>
+              <div class="testimonial-context">Reindeer Cinema</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Lang toggle
-        let currentLang = 'hu';
-        const translatables = document.querySelectorAll('[data-hu]');
 
-        function switchLang(lang) {
-            if (lang === currentLang) return;
-            currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                const isActive = btn.textContent.toLowerCase() === lang;
-                btn.classList.toggle('lang-active', isActive);
-                btn.classList.toggle('lang-inactive', !isActive);
-            });
-            translatables.forEach(el => {
-                el.style.opacity = '0';
-                setTimeout(() => {
-                    const val = el.getAttribute(`data-${lang}`);
-                    if (val) {
-                        const inner = el.innerHTML;
-                        if (inner.includes('<i ')) {
-                            el.innerHTML = inner.substring(0, inner.indexOf('</i>') + 4) + ' ' + val;
-                        } else {
-                            el.textContent = val;
-                        }
-                    }
-                    el.style.opacity = '1';
-                }, 150);
-            });
+  <!-- ============ LEAD MAGNET ============ -->
+  <section id="lead">
+    <div class="container">
+      <div class="lead-inner reveal">
+        <div class="section-label">Hasznos anyag</div>
+        <h2>Készülsz a stúdióba?</h2>
+        <div class="amber-rule" style="margin: 1.5rem auto;"></div>
+        <p>Töltsd le az ingyenes Stúdió-előkészítő Checklistet &mdash; 7 dolog, amit csinálj meg a felvétel ELŐTT, hogy ne égess pénzt.</p>
+        <div class="lead-form">
+          <input type="email" class="lead-input" placeholder="Az e-mail címed" aria-label="E-mail cím">
+          <button type="button" class="lead-btn">Küldöm &rarr;</button>
+        </div>
+        <p class="lead-note">Nem spammelünk. Maximum havi 1 levél hasznos tippekkel.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KAPCSOLAT ============ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <div class="section-label reveal">Dolgozzunk együtt</div>
+          <h2 class="reveal reveal-delay-1">Kezdjük el!</h2>
+          <div class="amber-rule reveal reveal-delay-2"></div>
+          <p class="reveal reveal-delay-2">Írj nekünk, és 24 órán belül válaszolunk.</p>
+        </div>
+        <div class="contact-right reveal reveal-delay-2">
+          <form class="contact-form" action="https://formsubmit.co/dave.vitanyi@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Új megkeresés a Modus Recording weboldalról">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://vitanyi-david-weboldal-20.vercel.app/">
+            <input type="text" name="_honey" style="display:none">
+            <div class="form-group">
+              <label for="name">Neved</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Pl. Kiss Péter" required>
+            </div>
+            <div class="form-group">
+              <label for="band">Zenekarod / projekted neve</label>
+              <input type="text" id="band" name="band" class="form-input" placeholder="Pl. The Noisy Few">
+            </div>
+            <div class="form-group">
+              <label for="service">Mivel kapcsolatban keressz?</label>
+              <select id="service" name="service" class="form-select">
+                <option value="">Válassz...</option>
+                <option>Felvétel</option>
+                <option>Keverés</option>
+                <option>Mastering</option>
+                <option>Keverés & Mastering</option>
+                <option>Film & Reklám hangutómunka</option>
+                <option>Helyszíni hangfelvétel (film & reklám)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Rövid leírás</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Hány dal, milyen műfaj, hol tartasz most..."></textarea>
+            </div>
+            <button type="submit" class="form-submit magnetic">Felveszem veletek a kapcsolatot &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <span>Modus Recording</span>
+          </div>
+          <div class="footer-copy">
+            &copy; 2025 Modus Recording &mdash; Budapest
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="https://www.instagram.com/modus.recording/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://open.spotify.com/playlist/3ntSJGbtXUoypACiY0vvhi" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dave.vitanyi@gmail.com&su=%C3%89rdekl%C5%91d%C3%A9s+%E2%80%93+Modus+Recording" target="_blank" rel="noopener">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+  (function() {
+    'use strict';
+
+    // ===== PAGE LOADER =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('pageLoader').classList.add('loaded');
+      }, 2200);
+    });
+
+
+    // ===== NAVIGATION =====
+    const nav = document.getElementById('mainNav');
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('navMobile');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ===== REVEAL ON SCROLL =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-        translatables.forEach(el => el.style.transition = 'opacity 0.15s');
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
-        // Mobile toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
-        const mobileExtras = document.querySelector('.nav-actions-mobile');
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        mobileToggle.addEventListener('click', () => {
-            const open = navLinks.classList.toggle('show');
-            mobileToggle.querySelector('i').className = open ? 'ph ph-x' : 'ph ph-list';
-            if (mobileExtras) mobileExtras.style.display = open ? 'flex' : 'none';
-        });
 
-        document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
-            navLinks.classList.remove('show');
-            mobileToggle.querySelector('i').className = 'ph ph-list';
-            if (mobileExtras) mobileExtras.style.display = 'none';
-        }));
+    // ===== MAGNETIC BUTTONS =====
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
 
-        // Sticky nav + scrollspy
-        const navbar = document.getElementById('navbar');
-        const sections = document.querySelectorAll('section[id], header[id]');
-        const allNavLinks = document.querySelectorAll('.nav-link');
+    // ===== SLIDER GRADIENT =====
+    function updateSliderGradient(slider) {
+      const val = slider.value;
+      slider.style.background = `linear-gradient(to right, var(--gray-dim) 0%, var(--gray-dim) ${val}%, var(--amber) ${val}%, var(--amber) 100%)`;
+    }
+    document.querySelectorAll('input[type=range]').forEach(slider => {
+      slider.addEventListener('input', () => updateSliderGradient(slider));
+      updateSliderGradient(slider);
+    });
 
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 60);
-            let cur = '';
-            sections.forEach(s => { if (pageYOffset >= s.offsetTop - 180) cur = s.id; });
-            allNavLinks.forEach(l => {
-                l.classList.toggle('active', l.getAttribute('href') === `#${cur}`);
-            });
-        }, { passive: true });
+    // ===== HERO AUDIO WIDGET (Demo) =====
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const blendSlider = document.getElementById('blendSlider');
+    const timeDisplay = document.getElementById('audioTime');
+    let audioCtx = null;
+    let rawSource = null, mixedSource = null;
+    let rawGain = null, mixedGain = null, masterGain = null;
+    let startTime = 0, pauseTime = 0;
+    let isPlaying = false;
+    const duration = 30;
 
-        // Scroll reveal
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); observer.unobserve(e.target); } });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+    function createDemoBuffer(ctx, freq, dur, clean) {
+      const sr = ctx.sampleRate;
+      const len = sr * dur;
+      const buf = ctx.createBuffer(1, len, sr);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        const t = i / sr;
+        let s = Math.sin(2 * Math.PI * freq * t) * 0.3;
+        s += Math.sin(2 * Math.PI * freq * 2 * t) * 0.15;
+        s += Math.sin(2 * Math.PI * freq * 3 * t) * 0.05;
+        if (!clean) {
+          s = Math.tanh(s * 2) * 0.5;
+          s += (Math.random() * 2 - 1) * 0.05;
+        } else {
+          s = Math.tanh(s * 1.2) * 0.6;
+        }
+        const fadeLen = sr * 0.3;
+        if (i < fadeLen) s *= i / fadeLen;
+        if (i > len - fadeLen) s *= (len - i) / fadeLen;
+        d[i] = s;
+      }
+      return buf;
+    }
+
+    function initAudio() {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      rawGain = audioCtx.createGain();
+      mixedGain = audioCtx.createGain();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.8;
+      rawGain.connect(masterGain);
+      mixedGain.connect(masterGain);
+      masterGain.connect(audioCtx.destination);
+      window._rawBuf = createDemoBuffer(audioCtx, 220, duration, false);
+      window._mixBuf = createDemoBuffer(audioCtx, 220, duration, true);
+    }
+
+    function playAudio() {
+      if (!audioCtx) initAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      rawSource = audioCtx.createBufferSource();
+      rawSource.buffer = window._rawBuf;
+      rawSource.loop = true;
+      rawSource.connect(rawGain);
+      mixedSource = audioCtx.createBufferSource();
+      mixedSource.buffer = window._mixBuf;
+      mixedSource.loop = true;
+      mixedSource.connect(mixedGain);
+      updateGains();
+      rawSource.start(0, pauseTime % duration);
+      mixedSource.start(0, pauseTime % duration);
+      startTime = audioCtx.currentTime - pauseTime;
+      isPlaying = true;
+      playIcon.innerHTML = '<rect x="4" y="3" width="4" height="12"/><rect x="10" y="3" width="4" height="12"/>';
+      requestAnimationFrame(updateTimer);
+    }
+
+    function pauseAudio() {
+      if (!isPlaying) return;
+      pauseTime = (audioCtx.currentTime - startTime) % duration;
+      rawSource && rawSource.stop();
+      mixedSource && mixedSource.stop();
+      isPlaying = false;
+      playIcon.innerHTML = '<path d="M5 3L15 9L5 15V3Z"/>';
+    }
+
+    function updateGains() {
+      if (!rawGain) return;
+      const v = blendSlider.value / 100;
+      rawGain.gain.value = 1 - v;
+      mixedGain.gain.value = v;
+    }
+
+    function fmt(s) {
+      return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+    }
+
+    function updateTimer() {
+      if (!isPlaying) return;
+      const e = (audioCtx.currentTime - startTime) % duration;
+      timeDisplay.textContent = fmt(e) + ' / ' + fmt(duration);
+      requestAnimationFrame(updateTimer);
+    }
+
+    playBtn.addEventListener('click', () => isPlaying ? pauseAudio() : playAudio());
+    blendSlider.addEventListener('input', updateGains);
+    document.addEventListener('touchstart', () => {
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+    }, { once: true });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+  })();
+  </script>
 </body>
-
 </html>
